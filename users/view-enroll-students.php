@@ -20,6 +20,8 @@
 
   <!-- Bootstrap core CSS -->
   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Cutom font CSS -->
+   <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
@@ -32,18 +34,20 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">User Panel </div>
-      <div class="list-group list-group-flush">
-        <a href="index.php" class="list-group-item list-group-item-action bg-light ">Dashboard</a>
-        <a href="user-teachers.php" class="list-group-item list-group-item-action bg-light active ">Teachers</a>
-        <a href="user-profile.php" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+            <div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> User Panel <hr> </div>
+            <div class="list-group list-group-flush">
 
-
-
-
-      </div>
-    </div>
+                <a href="index.php" class="list-group-item list-group-item-action active">
+                    <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
+                </a>
+                <a href="user-profile.php" class="list-group-item list-group-item-action ">
+                    <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
+                </a>
+                <a href="#" class="list-group-item list-group-item-action ">
+                    <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
+                </a>
+            </div>
+        </div>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -61,9 +65,7 @@
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php echo $_SESSION['userName']; ?>

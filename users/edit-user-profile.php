@@ -4,44 +4,34 @@
 <?php
 
 if (isset($_POST['EditProfileSubmit'])) {
-
-   $userId  = $_SESSION['userId'];
+    $userId = $_SESSION['userId'];
     $name = mysqli_real_escape_string($Connection, $_POST['name']);
     $email = mysqli_real_escape_string($Connection, $_POST['email']);
     $password = mysqli_real_escape_string($Connection, $_POST['password']);
-    $nameWithoutNumbers = "/[0-9]+$/";
+    $nameWithoutNumbers = '/[0-9]+$/';
 
     $emailCheck = " SELECT * FROM users WHERE email = '$email' AND id != '$userId' ";
     $executeEmailCheck = mysqli_query($Connection, $emailCheck);
 
+    if (empty($name) || empty($email) || empty($password)) {
+        $_SESSION['error'] = ' All fields are required ';
+    } elseif (preg_match($nameWithoutNumbers, $name) || strlen($name) < 3) {
+        $_SESSION['error'] = ' name field can not contain numbers, And name minum length is 3 characters  ';
+    } elseif (mysqli_num_rows($executeEmailCheck) == 1) {
+        $_SESSION['error'] = ' This email is already registered. please use your new email! ';
+    } elseif (strlen($password) < 6) {
+        $_SESSION['error'] = ' Password minimum length is 6 characters  ';
+    } else {
+        $sql = " UPDATE users SET name = '$name' ,  name = '$name' , password = '$password' WHERE id = '$userId' ";
+        $Execute = mysqli_query($Connection, $sql);
 
-    if (empty($name) || empty($email) || empty($password) ) {
-     $_SESSION['error'] = " All fields are required ";
+        if ($Execute) {
+            unset($_SESSION['userId'], $_SESSION['userName'], $_SESSION['userEmail']);
 
-   } elseif (preg_match($nameWithoutNumbers,$name) || strlen($name)<3) {
-       $_SESSION['error'] = " name field can not contain numbers, And name minum length is 3 characters  ";
-
-
-   } elseif (mysqli_num_rows($executeEmailCheck) == 1 ) {
-      $_SESSION['error'] = " This email is already registered. please use your new email! ";
-
-   }elseif (strlen($password)<6) {
-       $_SESSION['error'] = " Password minimum length is 6 characters  ";
-
-   } else {
-     $sql = " UPDATE users SET name = '$name' ,  name = '$name' , password = '$password' WHERE id = '$userId' ";
-     $Execute = mysqli_query($Connection,$sql);
-
-     if ($Execute) {
-       unset($_SESSION["userId"]);
-       unset($_SESSION["userName"]);
-       unset($_SESSION["userEmail"]);
-       $_SESSION["success"]= "User Profile has been updated successfully please login again";
-      Redirect_to("../signup2.php");
-     }
-
-   }
-
+            $_SESSION['success'] = 'User Profile has been updated successfully please login again';
+            Redirect_to('../signup2.php');
+        }
+    }
 } // end of if isset
 
 ?>
@@ -60,6 +50,8 @@ if (isset($_POST['EditProfileSubmit'])) {
 
   <!-- Bootstrap core CSS -->
   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Cutom font CSS -->
+   <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
 <link rel="stylesheet" href="assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
@@ -72,14 +64,20 @@ if (isset($_POST['EditProfileSubmit'])) {
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">User Panel </div>
-      <div class="list-group list-group-flush">
-        <a href="index.php" class="list-group-item list-group-item-action bg-light ">Dashboard</a>
-        <a href="user-teachers.php" class="list-group-item list-group-item-action bg-light">Teachers</a>
-        <a href="user-profile.php" class="list-group-item list-group-item-action bg-light active"> Profile </a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-      </div>
-    </div>
+            <div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> User Panel <hr> </div>
+            <div class="list-group list-group-flush">
+
+                <a href="index.php" class="list-group-item list-group-item-action">
+                    <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
+                </a>
+                <a href="user-profile.php" class="list-group-item list-group-item-action active">
+                    <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
+                </a>
+                <a href="#" class="list-group-item list-group-item-action ">
+                    <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
+                </a>
+            </div>
+        </div>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -96,9 +94,6 @@ if (isset($_POST['EditProfileSubmit'])) {
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -117,53 +112,52 @@ if (isset($_POST['EditProfileSubmit'])) {
       <div class="container-fluid">
 
 
-        <div class="col-md-6 m-auto pt-4 ">
+        <div class="col-md-6 m-auto py-4" >
 
           <div class="card" style="width: 350px;" >
-            <div class="card-header">
+            <div class="card-header bg-success">
               <h6>Update Profile</h6>
             </div>
-
-            <div class="card-body">
-
-
-              <div class="card">
-                <img class="card-img-top img-fluid" src="assets/img/default.png"   alt="Card image"  >
+               <div class="card-body px-3" >
+              <div class="card" >
+                <img class="card-img-top " src="assets/img/default.png"   alt="Card image">
                 <div class="mt-2">
                   <?php successMsg(); errorMsg();?>
 
               <div class="card-body">
-                <form  action=""  method="post" >
+
+               <form  action=""  method="post" >
+
                 <div class="from-group">
-                    <label for="name"> Name* </label>
-                    <input type="text" name="name" value="<?php echo $_SESSION['userName'] ?> " id="name"  class="form-control">
+                  <label for="name"> Name* </label>
+                  <input type="text" name="name" value="<?php echo $_SESSION['userName'] ?> " id="name"  class="form-control">
+                </div>
+
+                     <div class="from-group">
+                   <label for="email"> Email* </label>
+                  <input type="text" name="email" value="<?php echo $_SESSION['userEmail'] ?> " id="email"  class="form-control">
                 </div>
 
                 <div class="from-group">
-                    <label for="email"> Email* </label>
-                    <input type="text" name="email" value="<?php echo $_SESSION['userEmail'] ?> " id="email"  class="form-control">
-                </div>
-
-                <div class="from-group">
-                    <label for="password"> Password* </label>
-                    <input type="password" name="password"  id="password"  class="form-control">
+                  <label for="password"> Password* </label>
+                  <input type="password" name="password"  id="password"  class="form-control">
                 </div>
 
               <div class="form-group mt-3">
 
-                <button type="submit" class="btn btn-success"  name="EditProfileSubmit">Update</button>
-
+                <button type="submit" class="btn btn-primary"  name="EditProfileSubmit">Update</button>
 
               </div>
-                </form>
+
+            </form>
 
              </div>
            </div>
 
 
+           </div>
+         </div>
 
-            </div>
-          </div>
         </div>
 
     </div>

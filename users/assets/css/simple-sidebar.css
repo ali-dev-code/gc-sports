@@ -5,6 +5,7 @@
  */
 body {
   overflow-x: hidden;
+  background-color: #EDEEEF;
 }
 
 #sidebar-wrapper {
@@ -20,6 +21,7 @@ body {
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
+  color: white;
 }
 
 #sidebar-wrapper .list-group {
@@ -52,15 +54,15 @@ body {
 .list-group-item.active {
     z-index: 2;
     color: #fff;
-   
-   
+
+
 }
 
 .list-group-item:hover {
   z-index: 2;
   color: #fff;
- 
- 
+
+
 }
 
 
@@ -73,6 +75,10 @@ body {
   background-color: #4e73df!important;
   border: 0px solid rgba(0,0,0,.125);
 }
+
+.bg-light{
+  background-color: white!important;
+}
 .btn-primary {
   color: #fff;
   background-color: #4e73df!important;
@@ -80,10 +86,15 @@ body {
 }
 .bg-primary{
   background-color: #4e73df!important;
+
 }
 
 .text-primary{
   color: #4e73df!important;
+}
+.text-success{
+  color: #1cc88a!important;
+  color: white;
 }
 
 .bg-success{
@@ -93,6 +104,13 @@ body {
 
 .btn-success{
   background-color: #1cc88a!important;
-  border-color: hsl(158, 82%, 38%)!important;
+  border-color: #1cc88a!important;
 }
 
+h6{
+  color: white;
+}
+.toggler-fa{
+  color: #1cc88a!important;
+  font-size: 30px;
+}
