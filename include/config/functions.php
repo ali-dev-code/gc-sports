@@ -68,7 +68,7 @@ function loginUser()
             $_SESSION['userName'] = $row['name'];
             $_SESSION['userEmail'] = $row['email'];
             $_SESSION['success'] = " Your are login  {$_SESSION['userName']} ";
-            Redirect_to('signup2.php');
+            Redirect_to('index.php');
         }
     }
 } // end of login

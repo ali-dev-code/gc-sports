@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>GC ^$\n SPORTS</title>
+	<title>GC SPORTS</title>
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<!-- Custom Fonts font awesome -->
 	<link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,9 +47,47 @@
 						<li class="nav-item mr-1">
 							<a class="nav-link px-3" href="#CONTACT">CONTACT</a>
 						</li>
-						<li class="nav-item mr-3">
-							<a class="nav-link btn btn-success " style="border-radius:0px;" href="signup2.php" target="_blank">Login</a>
+
+					     <?php if (!login() && !loginAdmin()): ?>
+							<li class="nav-item mr-2">
+							<a class="nav-link" href="signup2.php" data-toggle="tooltip" data-placement="top" title="Sign in">
+								<i class="fas fa-sign-in-alt px-2"></i>
+							</a>
 						</li>
+						  <?php endif; ?>
+					    <?php if (!loginAdmin()): ?>
+							<li class="nav-item mr-2">
+							<a class="nav-link" href="signup2.php" data-toggle="modal" data-target="#modal-admin"
+							 data-toggle="tooltip" data-placement="top" title="Admin">
+								<i class="fas fa-user-shield px-2"></i>
+							</a>
+						</li>
+						 <?php endif; ?>
+						<!-- Dropdown -->
+						  <?php if (login()): ?>
+							<li class="nav-item dropdown ">
+							<a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown">
+								 <?php echo $_SESSION['userName']; ?>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item " href="users/index.php">Portal</a>
+								<a class="dropdown-item " href="include/users/logout.php">Logout</a>
+							</div>
+						</li>
+						  <?php endif; ?>
+
+						  <?php if (loginAdmin()): ?>
+							<li class="nav-item dropdown ">
+							<a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown">
+								<?php echo $_SESSION['adminName']; ?>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item " href="admin/index.php">Admin Panel</a>
+								<a class="dropdown-item " href="admin/include/addminLogout.php">Logout</a>
+							</div>
+						</li>
+						  <?php endif; ?>
+
 					</ul>
 				</div>
 			</div>
@@ -68,7 +106,7 @@
 					<img src="assets/img/slider/one.jpg" alt="Los Angeles" class="img-fluid">
 					<div class="carousel-caption">
 						<h3>WELOCOME TO GC SPORTS</h3>
-						<p>We had such a great time in LA!</p>
+						<p>We have such a great Sports fascilities !</p>
 					</div>
 				</div>
 				<div class="carousel-item">
@@ -81,15 +119,15 @@
 				<div class="carousel-item">
 					<img src="assets/img/slider/three.jpg" alt="New York" class="img-fluid">
 					<div class="carousel-caption">
-						<h3>New York</h3>
-						<p>We love the Big Apple!</p>
+						<h3>GC SPorts Tournaments</h3>
+						<p>Thank you, Lorem ipsum dollar sesit!</p>
 					</div>
 				</div>
 				<div class="carousel-item">
 					<img src="assets/img/slider/four.jpg" alt="New York" class="img-fluid">
 					<div class="carousel-caption">
-						<h3>New York</h3>
-						<p>We love the Big Apple!</p>
+						<h3>Gc Sports Coaches</h3>
+						<p>Thank you, Lorem ipsum dollar sesit!</p>
 					</div>
 				</div>
 			</div>
@@ -110,20 +148,18 @@
 			<div class="row">
 
 				<?php
-				$viewQuery = " SELECT * FROM upcoming_sports ";
-				$executeViewQuery = mysqli_query($Connection,$viewQuery);
-				while ($row = mysqli_fetch_array($executeViewQuery)) {
-					  $image = $row['image']; // joh name database table me hai
-					  $name = $row['sport_name'];
-					  $details= $row['details'];
-					  $date = $row['date'];
-					  $daysLeft = $row['days_left'];
-				?>
+                $viewQuery = ' SELECT * FROM upcoming_sports ';
+                $executeViewQuery = mysqli_query($Connection, $viewQuery);
+                while ($row = mysqli_fetch_array($executeViewQuery)) {
+                    $image = $row['image']; // joh name database table me hai
+                    $name = $row['sport_name'];
+                    $details = $row['details'];
+                    $date = $row['date'];
+                    $daysLeft = $row['days_left']; ?>
 
 				<div class="col-sm-4 m-auto">
 					<div class="card pb-3 up">
-						<img class="card-img-top img-fluid" src="admin/upload/upcoming/<?php echo $image;  ?>"
-						 alt="Card image cap">
+						<img class="card-img-top img-fluid" src="admin/upload/upcoming/<?php echo $image; ?>" alt="Card image cap">
 						<div class="card-block">
 							<h5 class="card-title px-3 pt-2"><?php echo $name; ?></h5>
 							<p class="card-text px-3"><?php echo $details; ?></p>
@@ -133,7 +169,8 @@
 					</div> <!-- end of card -->
 				</div> <!-- end of col -->
 
-				<?php } ?>
+				<?php
+                } ?>
 			</div> <!-- end of row 1 -->
 
 
@@ -258,7 +295,7 @@
 						<h6>__ CONTACT US</h6>
 					</div>
 					<div class="ceo-heading">
-						<h1 class=""> KATHERINE ALIE </h1>
+						<h1 class=""> ZUBAIR SHAUKAT </h1>
 						<span> <strong>HEAD OF SPORTS MANAGEMENT</strong> </span>
 						<p class="p-2">
 							<a href="#" style="font-size:26px; color:#D44136 ;"><i class="fas fa-envelope mr-2"></i></a>
@@ -272,7 +309,7 @@
 									do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
 									exercitation ullamco laboris
 									nisi ut aliquip ex ea commodo consequat."</p>
-								<footer class="blockquote-footer"> KATHERINE ALIE <cite title="Source Title"></cite></footer>
+								<footer class="blockquote-footer"> 	ZUBAIR SHAUKAT <cite title="Source Title"></cite></footer>
 							</blockquote>
 						</div>
 					</div>
@@ -285,7 +322,7 @@
 				</div> <!-- end of col -->
 				<div class="col-sm-6">
 					<div class="ceo-img">
-						<img class="img-fluid" src="assets/img/contact/contact-hero.jpg" alt="">
+						<img class="img-fluid" src="assets/img/contact/ceo.jpg" alt="">
 					</div>
 				</div>
 			</div>
@@ -354,34 +391,55 @@
 	</section>
 	<!-- Footer -->
 	<?php include 'include/footer.php'; ?>
-	<!-- modal for signup
-  <button class="btn btn-primary" data-toggle="modal" data-target="#modal-signup">Large modal</button>
- <div class="modal fade" id="modal-signup">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h4 class="modal-title">Sign Up</h4>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-           <span class="sr-only">Close</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         <form  method="post">
-         </form>
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <button type="button" class="btn btn-primary">Save changes</button>
-       </div>
-     </div>
-   </div>
- </div>
- -->
+	<div class="modal fade " id="modal-admin">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header ">
+					<h4 class="modal-title  "> Admin</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<?php adminLogin(); ?>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="text" class="form-control" id="email" name="email" value="">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" id="password" name="password" value="">
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+					<button type="submit" name="adminLogin" class="btn btn-success">Login</button>
+				</div>
+			</div><!-- /.modal-content -->
+			</form>
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	<script type="text/javascript" src="assets/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/popper.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/js/img-select-name.js"></script>
+	<script type="text/javascript" src="assets/js/smooth-scroll.js"></script>
+
+	<!-- for navigation link on whe scroll reache the section-->
+	<script>
+	$('body').scrollspy({
+		target: '#collapsibleNavbar',
+		offset: 90
+	})
+	</script>
+
+	<script>
+	var scroll = new SmoothScroll('a[href*="#"]');
+	</script>
+
+
 </body>
 
 </html>
