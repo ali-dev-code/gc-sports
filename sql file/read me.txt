@@ -1,0 +1,7 @@
+1.goto php my admin.
+2.and create database
+3.name =  gc_sports
+4.then open it.
+5.then click on import
+6.and import that file which is in sql folder
+  gc_sports.sql
