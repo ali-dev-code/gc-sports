@@ -1,5 +1,6 @@
 body {
     position: relative;
+
 }
 
 /*       custom style for navigation bar */
@@ -195,4 +196,20 @@ a.enrollB {
     transition: all 1s ease;
     -webkit-filter: blur(2px); /* Chrome, Safari, Opera */
     filter: blur(2px);
+}
+
+/*   media quries    */
+
+
+@media only screen and (max-width: 600px) {
+
+ h1{
+   font-size: 26px;;
+ }
+ .setting {
+  padding: 20px 0px;
+}
+.btn{
+
+}
 }

@@ -12,17 +12,18 @@ if (isset($_POST['addT'])) {
     $details = mysqli_real_escape_string($Connection, $_POST['details']);
     $short = mysqli_real_escape_string($Connection, $_POST['short']);
     $sport = mysqli_real_escape_string($Connection, $_POST['sport']);
+    $email = mysqli_real_escape_string($Connection, $_POST['email']);
     $password = mysqli_real_escape_string($Connection, $_POST['password']);
     $phone = mysqli_real_escape_string($Connection, $_POST['phone']);
-    if (empty($image) || empty($name) || empty($details) || empty($short) || empty($sport) || empty($phone)) {
+    if (empty($image) || empty($name) || empty($details) || empty($short) || empty($sport) || empty($email) || empty($phone)) {
         $_SESSION['error'] = 'All fields are required';
         Redirect_to('teachers.php');
     } elseif (strlen($name) < 3) {
-        $_SESSION['error'] = 'your title is short';
+        $_SESSION['error'] = 'name is short';
         Redirect_to('add-teachers.php');
     } else {
-        $Query = "INSERT INTO teachers (name, details,short_details,image,password,phone,sport_id)
-         VALUES('$name','$details','$short','$image','$password','$phone','$sport')";
+        $Query = "INSERT INTO teachers (name, details,short_details,image,password,phone,email,sport_id)
+         VALUES('$name','$details','$short','$image','$password','$phone','$email',$sport')";
         $Execute = mysqli_query($Connection, $Query);
         move_uploaded_file($_FILES['image']['tmp_name'], $Target);
         if ($Execute) {
@@ -148,6 +149,10 @@ if (isset($_POST['addT'])) {
 									<?php
                   } ?>
 								</select>
+              </div>
+              <div class="form-group">
+								<label for="short"> Email </label>
+								<input type="email" name="email" id="email" class="form-control" value="">
 							</div>
 							<div class="form-group">
 								<label for="short"> Password </label>

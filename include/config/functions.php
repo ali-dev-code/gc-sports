@@ -88,7 +88,7 @@ function confirmLogin()
 {
     if (!login()) {
         $_SESSION['error'] = ' You must login first. ';
-        Redirect_to(' signup2.php ');
+        Redirect_to('signup2.php');
     }
 }
 
@@ -141,5 +141,49 @@ function loginAdminRedirect()
 {
     if (isset($_SESSION['adminId'])) {
         Redirect_to('admin');
+    }
+}
+
+// ******** Teacher Login    *****   //
+
+function teacherLogin()
+{
+    global $Connection;
+    if (isset($_POST['teacherLogin'])) {
+
+        $email = mysqli_real_escape_string($Connection, $_POST['email']);
+        $password = mysqli_real_escape_string($Connection, $_POST['password']);
+
+        $query = " SELECT * FROM teachers WHERE email = '$email' AND password = '$password' ";
+        $execute = mysqli_query($Connection, $query);
+
+        if (mysqli_num_rows($execute) == 1) {
+            $row = mysqli_fetch_array($execute);
+            $_SESSION['teacherId'] = $row['id'];
+            $_SESSION['teacherName'] = $row['name'];
+            $_SESSION['teacherEmail'] = $row['eamil'];
+            $_SESSION['teacherImage'] = $row['image'];
+            $_SESSION['teacherDetails'] = $row['details'];
+            $_SESSION['success'] = " Welcome Back!  {$_SESSION['teacherName']} ";
+            Redirect_to('signup2.php');
+        } else {
+            return false;
+        }
+    }
+}
+
+
+function loginTeacher(){
+  if (isset($_SESSION['teacherId'])) {
+   return true;
+  }
+}
+
+
+function confirmLoginTeacher()
+{
+    if (!loginTeacher()) {
+        $_SESSION['error'] = ' You must login first. ';
+        Redirect_to('../signup2.php');
     }
 }
