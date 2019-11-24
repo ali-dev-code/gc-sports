@@ -49,7 +49,7 @@
               <a class="nav-link px-3" href="#CONTACT">CONTACT</a>
             </li>
 
-            <?php if (!login() && !loginAdmin()): ?>
+            <?php if (!login() && !loginAdmin() && !loginTeacher()): ?>
 
             <li class="nav-item mr-2">
               <a class="nav-link" href="signup2.php" data-toggle="tooltip" data-placement="top" title="Sign in">
@@ -58,7 +58,7 @@
             </li>
             <?php endif; ?>
 
-            <?php if (!loginAdmin()): ?>
+            <?php if (!loginAdmin() && !loginTeacher() && !login()): ?>
 
             <li class="nav-item mr-2">
               <a class="nav-link" data-toggle="modal" href="#modal-admin" data-toggle="tooltip" data-placement="top"
@@ -102,7 +102,7 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item " href="admin/index.php">Teacher Panel</a>
-                <a class="dropdown-item " href="/include/addminLogout.php">Logout</a>
+                <a class="dropdown-item " href="teachers/include/logout-teacher.php">Logout</a>
               </div>
             </li>
             <?php endif; ?>
@@ -215,7 +215,9 @@
             $sportName = $row['name']; ?>
         <div class="col-md-6">
           <div class="card custom-card crd-img ">
-            <img class="card-img-top img-fluid" src="admin/upload/sports/<?php echo $sportImage; ?>">
+            <img class="card-img-top img-fluid" src="admin/upload/sports/<?php echo $sportImage; ?>"
+            style=" -webkit-filter: brightness(20%);
+                filter:brightness(50%);" >
             <div class="card-img-overlay">
               <h4 class="card-title"><?php echo $sportName; ?>
               </h4>
@@ -339,8 +341,8 @@
           </div>
           <div class="team-help mt-5">
             <h5>Need to get in touch with the team? We’re all ears.</h5>
-            <div class="team-help-button">
-              <button class="btn button-team" type="button" name="button">CONTUCT US</button>
+            <div class="team-help-button mb-3">
+              <button class="btn button-team " type="button" name="button">CONTUCT US</button>
             </div>
           </div>
         </div> <!-- end of col -->

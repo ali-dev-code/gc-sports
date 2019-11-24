@@ -25,7 +25,7 @@
 				<hr>
 			</div>
 			<div class="list-group list-group-flush">
-				<a href="index" class="list-group-item list-group-item-action  active">
+				<a href="index.php" class="list-group-item list-group-item-action  active">
 					<span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
 				</a>
 				<a href="user-profile.php" class="list-group-item list-group-item-action ">
@@ -56,7 +56,7 @@
 								<?php echo $_SESSION['userName']; ?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="../include/users/logout.php"> Logut </a>
+								<a class="dropdown-item" href="include/user-logout.php"> Logut </a>
 							</div>
 						</li>
 					</ul>
@@ -67,31 +67,37 @@
 					<?php successMsg();
                     errorMsg(); ?>
 				</div>
-				<h6 class="ml-3">Enrolled Coach</h6>
+				<h6 class="ml-3 text-dark">Enrolled Coach</h6>
 				<?php
         $query = ' SELECT * FROM teacher_enroll WHERE user_id = ' . $_SESSION['userId'] . '  ';
         $result = mysqli_query($Connection, $query);
         while ($row = mysqli_fetch_array($result)) {
-            $teacherId = $row['teacher_id']; ?>
+            $teacherId = $row['teacher_id'];
+            $userTeacherEnrollId = $row['id'];
+            ?>
 				<?php
             $query2 = " SELECT * FROM teachers WHERE id = '$teacherId'  ";
             $result2 = mysqli_query($Connection, $query2);
             while ($row2 = mysqli_fetch_array($result2)) {
                 ?>
+
 				<div class="card d-inline-block ml-3  my-5 " style="width: 250px ">
 					<div class="card-header bg-success">
 						<h6 class="text-white">Coach</h6>
 					</div>
-					<div class="card-body p-3">
+					<div class="card-body p-2">
 						<div class="card">
 							<img class="card-img-top img-fluid" src="../admin/upload/teachers/<?php echo $row2['image']; ?>" alt="Card image">
 							<div class="card-body">
 								<h6 class="card-title"><?php echo $row2['name']; ?>
 								</h6>
-								<p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $row2['details']; ?> </p>
-								<i class="fa fa-phone mr-1 text-success" aria-hidden="true"></i>
-								<span class="card-text text-muted"> <?php echo $row2['phone']; ?> </span>
-								<a href="view-enroll-students.php?id=<?php echo $teacherId; ?>" class="btn btn-primary mt-3 btn-sm">View Enrolld Studens</a>
+                <p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $row2['details']; ?> </p>
+                <i class="fa fa-envelope text-success" aria-hidden="true"> <?php echo $row2['email']; ?> </i>
+                <br>
+                <i class="fa fa-phone mr-1 text-success " aria-hidden="true"> <?php echo $row2['phone']; ?> </i>
+                <br>
+                <a href="view-enroll-students.php?id=<?php echo $teacherId;?>" class="btn btn-primary mt-3 btn-sm">View Enrolld Studens</a>
+                <a href="disenroll-teacher.php?id=<?php echo $userTeacherEnrollId;?>" class="btn btn-danger mt-3 btn-sm">Dis-Enroll</a>
 							</div>
 						</div>
 					</div>
@@ -100,6 +106,7 @@
             } ?>
 				<?php
         } ?>
+
 			</div>
 			<!-- /#page-content-wrapper -->
 		</div>

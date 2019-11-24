@@ -119,6 +119,14 @@ a.enrollB {
     font-size: 18px;
     border-radius: 0px;
 }
+a.enrollB:hover {
+
+
+
+  color: white;
+  background-color: #1d722b;
+
+}
 
 /** Gallery  */
 
@@ -186,17 +194,7 @@ a.enrollB {
     font-size: 15px;
 }
 
-.card-img {
-    transition: all 1s ease;
-    -webkit-filter: blur(0px); /* Chrome, Safari, Opera */
-    filter: blur(0px);
-}
 
-.custom-card:hover > *:not(.card-img-overlay) {
-    transition: all 1s ease;
-    -webkit-filter: blur(2px); /* Chrome, Safari, Opera */
-    filter: blur(2px);
-}
 
 /*   media quries    */
 

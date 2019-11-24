@@ -150,7 +150,6 @@ function teacherLogin()
 {
     global $Connection;
     if (isset($_POST['teacherLogin'])) {
-
         $email = mysqli_real_escape_string($Connection, $_POST['email']);
         $password = mysqli_real_escape_string($Connection, $_POST['password']);
 
@@ -172,13 +171,12 @@ function teacherLogin()
     }
 }
 
-
-function loginTeacher(){
-  if (isset($_SESSION['teacherId'])) {
-   return true;
-  }
+function loginTeacher()
+{
+    if (isset($_SESSION['teacherId'])) {
+        return true;
+    }
 }
-
 
 function confirmLoginTeacher()
 {

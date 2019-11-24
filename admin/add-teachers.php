@@ -60,7 +60,7 @@ if (isset($_POST['addT'])) {
 				<hr>
 			</div>
 			<div class="list-group list-group-flush">
-				<a href="index" class="list-group-item list-group-item-action  ">
+				<a href="index.php" class="list-group-item list-group-item-action  ">
 					<span class="mr-1"> <i class="fas fa-tachometer-alt"></i> </span> Dashboard
 				</a>
 				<a href="add-teachers.php" class="list-group-item list-group-item-action active">

@@ -1,5 +1,43 @@
 <?php require_once 'include/config/config.php'; ?>
 <?php loginAdminRedirect(); ?>
+<?php
+if (isset($_POST['signupSubmit'])) {
+    $name = mysqli_real_escape_string($Connection, $_POST['name']);
+    $email = mysqli_real_escape_string($Connection, $_POST['email']);
+    $reg = mysqli_real_escape_string($Connection, $_POST['reg']);
+    $password = mysqli_real_escape_string($Connection, $_POST['password']);
+    $password2 = mysqli_real_escape_string($Connection, $_POST['password2']);
+
+    $nameWithoutNumbers = '/[0-9]+$/';
+
+    if (empty($name) || empty($email) || empty($password) || empty($password2) || empty($reg)) {
+        $_SESSION['error'] = ' All fields are required ';
+        Redirect_to('signup2.php');
+    } elseif (preg_match($nameWithoutNumbers, $name) || strlen($name) < 3) {
+        $_SESSION['error'] = ' name fiel can not contain numbers, And name minum length is 3 characters  ';
+        Redirect_to('signup2.php');
+    } elseif (emailExist($email)) {
+        $_SESSION['error'] = ' email is already registered ';
+        Redirect_to('signup2.php');
+    } elseif (strlen($password) < 6) {
+        $_SESSION['error'] = ' Password minimum length is 6 characters  ';
+        Redirect_to('signup2.php');
+    } elseif ($password !== $password2) {
+        $_SESSION['error'] = ' Password dont mtach  ';
+        Redirect_to('signup2.php');
+    } else {
+        $query = " INSERT INTO users(name,email, reg, status ,password) VALUES('$name','$email', '$reg', 0 ,  '$password') ";
+        $execute = mysqli_query($Connection, $query) ;
+        if ($execute) {
+            $_SESSION['success'] = ' You are successfully registered please login for enroll yourself with your desired coachh  ';
+            Redirect_to('signup2.php');
+        } else {
+            die('QUERY FAILED' . mysqli_error($Connection));
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +73,7 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav ml-auto text-center">
           <li class="nav-item  mr-1">
-            <a class="nav-link px-3 " href="#HEADER">HOME</a>
+            <a class="nav-link px-3 " href="index.php">HOME</a>
           </li>
           <li class="nav-item mr-1">
             <a class="nav-link px-3 active" href="signup2.php">STUDENT</a>
@@ -44,7 +82,7 @@
             <a class="nav-link px-3" data-toggle="modal" href="#modal-teacher">TEACHER</a>
           </li>
 
-          <?php if (!loginAdmin() && !loginTeacher()): ?>
+          <?php if (!loginAdmin() && !loginTeacher() && !login()): ?>
 
           <li class="nav-item mr-2">
             <a class="nav-link" data-toggle="modal" href="#modal-admin" data-toggle="tooltip" data-placement="top" title="Admin">
@@ -61,7 +99,7 @@
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item " href="users/index.php">Portal</a>
-              <a class="dropdown-item " href="include/users/logout.php">Logout</a>
+              <a class="dropdown-item " href="users/logout.php">Logout</a>
             </div>
           </li>
           <?php endif; ?>

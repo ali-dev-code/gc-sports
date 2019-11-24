@@ -40,7 +40,7 @@
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-				<a href="#" id="menu-toggle"> <img src="assets/img/menu.png" alt="" style="width: 32px;"> </a>
+      <a href="#" id="menu-toggle"> <i class="fas fa-toggle-off toggler-fa "></i> </a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 					aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -56,7 +56,7 @@
 								<?php echo $_SESSION['userName']; ?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="../include/users/logout.php"> Logut </a>
+								<a class="dropdown-item" href="include/user-logout.php"> Logut </a>
 							</div>
 						</li>
 					</ul>

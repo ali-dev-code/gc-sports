@@ -84,7 +84,7 @@ if (isset($_POST['EditProfileSubmit'])) {
 								<?php echo $_SESSION['userName']; ?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="../include/users/logout.php"> Logut </a>
+								<a class="dropdown-item" href="include/user-logout.php"> Logut </a>
 							</div>
 						</li>
 					</ul>
