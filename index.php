@@ -1,7 +1,6 @@
 <?php require_once 'include/config/config.php'; ?>
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -417,6 +416,7 @@
   </section>
   <!-- Footer -->
   <?php include 'include/footer.php'; ?>
+
   <div class="modal fade " id="modal-admin">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -447,13 +447,13 @@
       </form>
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-  <script type="text/javascript" src="assets/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery-3.4.1.min.js"></script> <!-- jquery -->
   <script type="text/javascript" src="assets/js/popper.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="assets/js/img-select-name.js"></script>
-  <script type="text/javascript" src="assets/js/smooth-scroll.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script> <!-- bootdtrap min.js -->
+  <script type="text/javascript" src="assets/js/smooth-scroll.js"></script> <!-- smoth scroll js -->
+  <script type="text/javascript" src="assets/fancybox/jquery.fancybox.js"></script> <!-- gancy box gallery js -->
 
-  <!-- for navigation link on whe scroll reache the section-->
+  <!-- for navigation link selected whe scroll reache the section -->
   <script>
   $('body').scrollspy({
     target: '#collapsibleNavbar',

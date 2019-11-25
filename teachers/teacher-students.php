@@ -1,5 +1,5 @@
 <?php require_once '../include/config/config.php'; ?>
-<?php confirmLogin(); ?>
+<?php confirmLoginTeacher(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,18 +21,18 @@
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> User Panel
+      <div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> Teacher Panel
         <hr>
       </div>
       <div class="list-group list-group-flush">
-        <a href="index.php" class="list-group-item list-group-item-action">
-          <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
+        <a href="index.php" class="list-group-item list-group-item-action ">
+          <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teacher
         </a>
-        <a href="user-profile.php" class="list-group-item list-group-item-action active">
-          <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
+        <a href="teacher-students.php" class="list-group-item list-group-item-action  active">
+          <span class="mr-1"> <i class="fas fa-users"></i> </span> Students
         </a>
-        <a href="#" class="list-group-item list-group-item-action ">
-          <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
+        <a href="teacher-students.php" class="list-group-item list-group-item-action  ">
+          <span class="mr-1"> <i class="fa fa-envelope-open" aria-hidden="true"></i> </span> Send Email
         </a>
       </div>
     </div>
@@ -53,10 +53,10 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <?php echo $_SESSION['userName']; ?>
+                <?php echo $_SESSION['teacherName']; ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="include/user-logout.php"> Logut </a>
+                <a class="dropdown-item" href="include/logout-teacher.php"> Logut </a>
               </div>
             </li>
           </ul>
@@ -64,26 +64,34 @@
       </nav>
       <div class="container-fluid">
         <div class="my-3">
-          <?php successMsg(); errorMsg();?>
+          <?php successMsg();
+                errorMsg(); ?>
         </div>
-        <div class="col-md-6 m-auto py-4">
-          <div class="card" style="width: 300px;">
-            <div class="card-header bg-success ">
-              <h6>User Profile</h6>
-            </div>
-            <div class="card-body">
-              <div class="card">
-                <img class="card-img-top img-fluid" src="../portal-assets/img/default.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title"><?php echo $_SESSION['userName']  ?></h4>
-                  <p class="card-text"> <strong>Email: </strong> <?php echo $_SESSION['userEmail']; ?> </p>
-                  <a href="edit-user-profile.php" class="btn btn-primary">Edit</a>
-                </div>
-              </div>
 
+
+          <div class="col-sm-4 mx-auto my-4">
+            <div class="card">
+              <div class="card-header bg-success text-white ">
+                Teacher
+              </div>
+              <img class="card-img-top img-fluid" src="../admin/upload/teachers/<?php echo $_SESSION['teacherImage']; ?>" alt="Card image">
+              <div class="card-body">
+                <h6 class="card-title"><?php echo  $_SESSION['teacherName']; ; ?>  </h6>
+                <p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $_SESSION['teacherDetails']; ?> </p>
+                <i class="fa fa-envelope text-success mr-1 my-2" aria-hidden="true"> </i>
+                <span><?php echo $_SESSION['teacherEmail']; ?></span>
+                <br>
+                <i class="fa fa-phone mr-1 text-success my-2" aria-hidden="true">  </i>
+                <span><?php echo $_SESSION['teacherPhone']; ?></span>
+                <br>
+                <a   class="btn btn-primary btn-block mt-3" href="view-teacher-enroll-students.php?id=<?php echo $_SESSION['teacherId'] ?>">
+                View Enrolled Students
+              </a>
+              </div>
             </div>
           </div>
-        </div>
+
+
       </div>
       <!-- /#page-content-wrapper -->
     </div>

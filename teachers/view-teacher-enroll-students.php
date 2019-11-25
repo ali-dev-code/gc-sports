@@ -1,8 +1,6 @@
 <?php require_once '../include/config/config.php'; ?>
-<?php confirmLogin(); ?>
-<?php
+<?php confirmLoginTeacher(); ?>
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,16 +21,22 @@
 <body>
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar -->
-		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> User Panel
-				<hr>
-			</div>
-			<div class="list-group list-group-flush">
-				<a href="index.php" class="list-group-item list-group-item-action active">
-					<span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
-				</a>
-			</div>
-		</div>
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> Teacher Panel
+        <hr>
+      </div>
+      <div class="list-group list-group-flush">
+        <a href="index.php" class="list-group-item list-group-item-action ">
+          <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teacher
+        </a>
+        <a href="teacher-students.php" class="list-group-item list-group-item-action  active">
+          <span class="mr-1"> <i class="fas fa-users"></i> </span> Students
+        </a>
+        <a href="teacher-students.php" class="list-group-item list-group-item-action  ">
+          <span class="mr-1"> <i class="fa fa-envelope-open" aria-hidden="true"></i> </span> Send Email
+        </a>
+      </div>
+    </div>
 		<!-- /#sidebar-wrapper -->
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
@@ -50,7 +54,7 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false">
-								<?php echo $_SESSION['userName']; ?>
+								<?php echo $_SESSION['teacherName']; ?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="include/user-logout.php"> Logut </a>
@@ -61,8 +65,8 @@
 			</nav>
 			<div class="container-fluid">
 				<div class="card my-5">
-					<div class="card-header bg-success">
-						<h6>Students Enrolled</h6>
+					<div class="card-header  bg-success">
+					   <h6>	 Students Enrolled </h6>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -76,14 +80,14 @@
 								</thead>
 								<tbody>
 									<?php
-                            $TeacherIDFromURL = $_GET['id'];
-                            $viewStudents = " SELECT student_name, teacher FROM teacher_enroll WHERE teacher_id = '$TeacherIDFromURL' ";
-                            $executeViewStudents = mysqli_query($Connection, $viewStudents);
-                            $srn = 0;
-                            while ($datarows = mysqli_fetch_array($executeViewStudents)) {
-                                $studenName = $datarows['student_name'];
-                                $teacherName = $datarows['teacher'];
-                                $srn++; ?>
+                        $TeacherIDFromURL = $_GET['id'];
+                        $viewStudents = " SELECT student_name, teacher FROM teacher_enroll WHERE teacher_id = '$TeacherIDFromURL' ";
+                        $executeViewStudents = mysqli_query($Connection, $viewStudents);
+                        $srn = 0;
+                        while ($datarows = mysqli_fetch_array($executeViewStudents)) {
+                            $studenName = $datarows['student_name'];
+                            $teacherName = $datarows['teacher'];
+                            $srn++; ?>
 									<tr>
 										<td> <?php echo $srn; ?> </td>
 										<td><?php echo $teacherName  ?></td>

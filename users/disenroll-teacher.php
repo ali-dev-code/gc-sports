@@ -10,11 +10,11 @@
   <meta name="author" content="">
   <title>User Panel</title>
   <!-- Bootstrap core CSS -->
-  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Cutom font CSS -->
-  <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Cutom font CSS -->
+	<link href="../assets/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" href="../portal-assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -73,18 +73,17 @@
         $query = " SELECT * FROM teacher_enroll WHERE id = ' $idFromUrl '  ";
         $result = mysqli_query($Connection, $query);
         if (mysqli_num_rows($result) != 1) {
-          Redirect_to("index.php");
+            Redirect_to('index.php');
         }
         while ($row = mysqli_fetch_array($result)) {
             $teacherId = $row['teacher_id'];
-
         }
         ?>
         <?php
             $query2 = " SELECT * FROM teachers WHERE id = '$teacherId'  ";
             $result2 = mysqli_query($Connection, $query2);
             while ($row2 = mysqli_fetch_array($result2)) {
-              ?>
+                ?>
 
         <div class="col-sm-4 mx-auto">
           <div class="card   my-5 ">
@@ -102,7 +101,7 @@
                   <br>
                   <i class="fa fa-phone mr-1 text-success mt-2" aria-hidden="true"> <?php echo $row2['phone']; ?> </i>
                   <br>
-                  <a href="include/disenroll-teacher-done.php?id=<?php echo $idFromUrl;?>" class="btn btn-danger mt-3 btn-sm"
+                  <a href="include/disenroll-teacher-done.php?id=<?php echo $idFromUrl; ?>" class="btn btn-danger mt-3 btn-sm"
                     onclick="return confirm('Are you sure to Dis-Enroll this teacher?')">
                     Dis-Enroll
                   </a>
@@ -111,14 +110,15 @@
             </div>
           </div>
         </div>
-        <?php } ?>
+        <?php
+            } ?>
       </div>
       <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <!-- Menu Toggle Script -->
     <script>
     $("#menu-toggle").click(function(e) {

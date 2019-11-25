@@ -12,11 +12,11 @@ confirmLoginAdmin();
   <meta name="author" content="">
   <title>Admin Panel</title>
   <!-- Bootstrap core CSS -->
-  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
   <!-- Cutom font CSS -->
-  <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="../portal-assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -51,7 +51,7 @@ confirmLoginAdmin();
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <i href="#" id="menu-toggle"> <i class="fas fa-toggle-off toggler-fa "></i> </i>
+        <a href="#" id="menu-toggle"> <i class="fas fa-toggle-off toggler-fa "></i> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -96,34 +96,39 @@ confirmLoginAdmin();
                 </thead>
                 <tbody>
                   <?php
-                  $query = "  SELECT * FROM users ";
+                  $query = '  SELECT * FROM users ';
                   $execute = mysqli_query($Connection, $query);
                   $srn = 0;
                   while ($row = mysqli_fetch_array($execute)) {
-                    $id = $row['id'];
-                    $name = $row['name'];
-                    $email = $row['email'];
-                    $regno  = $row['reg'];
-                    $staus  = $row['status'];
-                    $srn++;
-                    ?>
+                      $id = $row['id'];
+                      $name = $row['name'];
+                      $email = $row['email'];
+                      $regno = $row['reg'];
+                      $staus = $row['status'];
+                      $srn++; ?>
+
                   <tr>
                     <td> <?php echo $srn; ?> </td>
                     <td> <?php echo $name ?> </td>
                     <td><?php echo $email ?></td>
                     <td><?php echo $regno; ?></td>
-                    <td> <?php if ($staus == 0) : ?>
+                    <td>
+                      <?php if ($staus == 0) : ?>
+
                       <a href="include/approveUser.php?approveUser=<?php echo $id; ?>" class="btn btn-success btn-sm mb-2">
                         Approve
                       </a>
                       <?php endif; ?>
+
                       <a href="include/disapproveUser.php?dissaproveUser=<?php echo $id ?>  "
                         onclick="return confirm('Are you sure to Disapprove this user?')" class="btn btn-danger btn-sm mb-2 ">
                         Disapprove
                       </a>
                     </td>
                   </tr>
-                  <?php } ?>
+                  <?php
+                  } ?>
+
                 </tbody>
               </table>
             </div>
@@ -133,9 +138,9 @@ confirmLoginAdmin();
       <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+
     <!-- Menu Toggle Script -->
     <script>
     $("#menu-toggle").click(function(e) {

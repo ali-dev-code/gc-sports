@@ -4,31 +4,31 @@ confirmLoginAdmin();
 ?>
 <?php
 
-if (isset($_POST["submit"])) {
+if (isset($_POST['submit'])) {
     //for image
-    $image = $_FILES["image"]["name"];
-    $Target = "upload/upcoming/" . basename($_FILES["image"]["name"]); // is me image upload ogi bhai jaan uski directory di hai
-    $name = mysqli_real_escape_string($Connection, $_POST["name"]);
-	 $details = mysqli_real_escape_string($Connection, $_POST["details"]);
-	 $date = mysqli_real_escape_string($Connection, $_POST['date']);
-	 $left = mysqli_real_escape_string($Connection, $_POST['left']);
-    if (empty($image) || empty($name) || empty($details) || empty($date) ||empty($left) ) {
-		$_SESSION["error"] = "All fields are required";
-          Redirect_to("upcoming-sports.php");
-	 }
-	 if (strlen($name) < 3) {
-		$_SESSION["error"] = "your title is short";
-		 Redirect_to("upcoming-sports.php");
+    $image = $_FILES['image']['name'];
+    $Target = 'upload/upcoming/' . basename($_FILES['image']['name']); // is me image upload ogi bhai jaan uski directory di hai
+    $name = mysqli_real_escape_string($Connection, $_POST['name']);
+    $details = mysqli_real_escape_string($Connection, $_POST['details']);
+    $date = mysqli_real_escape_string($Connection, $_POST['date']);
+    $left = mysqli_real_escape_string($Connection, $_POST['left']);
+    if (empty($image) || empty($name) || empty($details) || empty($date) || empty($left)) {
+        $_SESSION['error'] = 'All fields are required';
+        Redirect_to('upcoming-sports.php');
+    }
+    if (strlen($name) < 3) {
+        $_SESSION['error'] = 'your title is short';
+        Redirect_to('upcoming-sports.php');
     } else {
         $Query = "INSERT INTO upcoming_sports (image,sport_name,details,date,days_left)
          VALUES('$image', '$name', '$details','$date','$left')";
         $Execute = mysqli_query($Connection, $Query);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $Target);
+        move_uploaded_file($_FILES['image']['tmp_name'], $Target);
         if ($Execute) {
-            $_SESSION["success"] = "sport has been added successfully";
-            Redirect_to("upcoming-sports.php");
+            $_SESSION['success'] = 'sport has been added successfully';
+            Redirect_to('upcoming-sports.php');
         } else {
-            die("QUERY FAILED" . mysqli_error($Connection));
+            die('QUERY FAILED' . mysqli_error($Connection));
         }
     }
 }
@@ -42,12 +42,12 @@ if (isset($_POST["submit"])) {
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Admin Panel</title>
-  <!-- Bootstrap core CSS -->
-  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Cutom font CSS -->
-  <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
+ 	<!-- Bootstrap core CSS -->
+   <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Cutom font CSS -->
+	<link href="../assets/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" href="../portal-assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -82,7 +82,7 @@ if (isset($_POST["submit"])) {
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <i href="#" id="menu-toggle"> <i class="fas fa-toggle-off toggler-fa "></i> </i>
+        <a href="#" id="menu-toggle"> <i class="fas fa-toggle-off toggler-fa "></i> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -160,29 +160,29 @@ if (isset($_POST["submit"])) {
                 </thead>
                 <tbody>
                   <?php
-                                    $query = " SELECT * FROM upcoming_sports ";
-                                    $execute = mysqli_query($Connection, $query);
-                                    $srNo = 0;
-                                    while ($row = mysqli_fetch_array($execute)) {
-                                        $srNo++; ?>
+                      $query = ' SELECT * FROM upcoming_sports ';
+                      $execute = mysqli_query($Connection, $query);
+                      $srNo = 0;
+                      while ($row = mysqli_fetch_array($execute)) {
+                          $srNo++; ?>
                   <tr>
-                    <td> <?php echo $srNo;   ?> </td>
-                    <td> <?php echo $row['sport_name'];   ?> </td>
+                    <td> <?php echo $srNo; ?> </td>
+                    <td> <?php echo $row['sport_name']; ?> </td>
                     <td> <img src="upload/upcoming/<?php echo $row['image']; ?>" style="width:140px;" alt=""> </td>
                     <td><?php echo $row['date']; ?></td>
                     <td><?php echo $row['days_left']; ?></td>
                     <td>
-                      <a href="edit-upcoming-sport.php?edit= <?php echo $row['id'];   ?> " class="btn btn-warning btn-sm mb-1">
+                      <a href="edit-upcoming-sport.php?edit= <?php echo $row['id']; ?> " class="btn btn-warning btn-sm mb-1">
                         Edit
                       </a>
-                      <a href="delete-upcoming-sport.php?delete= <?php echo $row['id'];   ?>" class="btn btn-danger btn-sm mb-1">
+                      <a href="delete-upcoming-sport.php?delete= <?php echo $row['id']; ?>" class="btn btn-danger btn-sm mb-1">
                         Delete
                       </a>
                     </td>
                   </tr>
                 </tbody>
                 <?php
-                            } ?>
+                      } ?>
               </table>
             </div>
           </div>
@@ -192,8 +192,9 @@ if (isset($_POST["submit"])) {
     </div>
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/img-select-name.js"></script>
     <!-- Menu Toggle Script -->
     <script>
     $("#menu-toggle").click(function(e) {

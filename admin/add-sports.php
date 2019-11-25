@@ -4,34 +4,33 @@ confirmLoginAdmin();
 ?>
 <?php
 
-if (isset($_POST["addS"])) {
+if (isset($_POST['addS'])) {
     //for image
-    $image = $_FILES["image"]["name"];
-    $Target = "upload/sports/" . basename($_FILES["image"]["name"]); // is me image upload ogi bhai jaan uski directory di hai
-    $name = mysqli_real_escape_string($Connection, $_POST["name"]);
-	 $details = mysqli_real_escape_string($Connection, $_POST["details"]);
-	 $checkAlreadySport = " SELECT * FROM sports WHERE name ='$name' ";
-	 $executeAlreadySport = mysqli_query($Connection,$checkAlreadySport);
+    $image = $_FILES['image']['name'];
+    $Target = 'upload/sports/' . basename($_FILES['image']['name']); // is me image upload ogi bhai jaan uski directory di hai
+    $name = mysqli_real_escape_string($Connection, $_POST['name']);
+    $details = mysqli_real_escape_string($Connection, $_POST['details']);
+    $checkAlreadySport = " SELECT * FROM sports WHERE name ='$name' ";
+    $executeAlreadySport = mysqli_query($Connection, $checkAlreadySport);
     if (empty($image) || empty($name) || empty($details)) {
-        $_SESSION["error"] = "All fields are required";
-        Redirect_to("sports.php");
+        $_SESSION['error'] = 'All fields are required';
+        Redirect_to('sports.php');
     } elseif (strlen($name) < 3) {
-        $_SESSION["error"] = "your title is short";
-        Redirect_to("add-sports.php");
-	 }elseif (mysqli_num_rows($executeAlreadySport) == 1) {
-		$_SESSION["error"] = "sport is already Registered";
-		Redirect_to("add-sports.php");
-	 }
-	  else {
+        $_SESSION['error'] = 'your title is short';
+        Redirect_to('add-sports.php');
+    } elseif (mysqli_num_rows($executeAlreadySport) == 1) {
+        $_SESSION['error'] = 'sport is already Registered';
+        Redirect_to('add-sports.php');
+    } else {
         $Query = "INSERT INTO sports (name, image,details)
          VALUES('$name', '$image', '$details')";
         $Execute = mysqli_query($Connection, $Query);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $Target);
+        move_uploaded_file($_FILES['image']['tmp_name'], $Target);
         if ($Execute) {
-            $_SESSION["success"] = "Sport has been added successfully";
-            Redirect_to("add-sports.php");
+            $_SESSION['success'] = 'Sport has been added successfully';
+            Redirect_to('add-sports.php');
         } else {
-            die("QUERY FAILED" . mysqli_error($Connection));
+            die('QUERY FAILED' . mysqli_error($Connection));
         }
     }
 }
@@ -46,11 +45,11 @@ if (isset($_POST["addS"])) {
 	<meta name="author" content="">
 	<title>Admin Panel</title>
 	<!-- Bootstrap core CSS -->
-	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Cutom font CSS -->
-	<link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="../assets/fontawesome-free/css/all.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
-	<link rel="stylesheet" href="assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
+	<link rel="stylesheet" href="../portal-assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -85,7 +84,7 @@ if (isset($_POST["addS"])) {
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-				<i href="#" id="menu-toggle"> <i class="fas fa-toggle-off toggler-fa "></i> </i>
+				<a href="#" id="menu-toggle"> <i class="fas fa-toggle-off toggler-fa "></i> </a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 					aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -153,25 +152,25 @@ if (isset($_POST["addS"])) {
 								</thead>
 								<tbody>
 									<?php
-                                    $query = " SELECT * FROM sports ";
-                                    $execute = mysqli_query($Connection, $query);
-                                    $srNo = 0;
-                                    while ($row = mysqli_fetch_array($execute)) {
-                                        $srNo++; ?>
+                    $query = ' SELECT * FROM sports ';
+                    $execute = mysqli_query($Connection, $query);
+                    $srNo = 0;
+                    while ($row = mysqli_fetch_array($execute)) {
+                        $srNo++; ?>
 									<tr>
-										<td> <?php echo $srNo;   ?> </td>
-										<td> <?php echo $row['name'];   ?> </td>
+										<td> <?php echo $srNo; ?> </td>
+										<td> <?php echo $row['name']; ?> </td>
 										<td> <img src="upload/sports/<?php echo $row['image']; ?>" style="width:140px;" alt=""> </td>
 										<td>
-											<a href="edit-sport.php?edit= <?php echo $row['id'];   ?> " class="btn btn-warning btn-sm"> Edit
+											<a href="edit-sport.php?edit= <?php echo $row['id']; ?> " class="btn btn-warning btn-sm"> Edit
 											</a>
-											<a href="delete-sport.php?delete= <?php echo $row['id'];   ?>" class="btn btn-danger btn-sm"> Delete
+											<a href="delete-sport.php?delete= <?php echo $row['id']; ?>" class="btn btn-danger btn-sm"> Delete
 											</a>
 										</td>
 									</tr>
 								</tbody>
 								<?php
-                            } ?>
+                    } ?>
 							</table>
 						</div>
 					</div>
@@ -181,8 +180,9 @@ if (isset($_POST["addS"])) {
 		</div>
 		<!-- /#wrapper -->
 		<!-- Bootstrap core JavaScript -->
-		<script src="assets/jquery/jquery.min.js"></script>
-		<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/img-select-name.js"></script>
 		<!-- Menu Toggle Script -->
 		<script>
 		$("#menu-toggle").click(function(e) {

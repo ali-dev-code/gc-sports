@@ -43,12 +43,12 @@ if (isset($_POST['addT'])) {
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Admin Panel</title>
-	<!-- Bootstrap core CSS -->
-	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Cutom font CSS -->
-	<link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="../assets/fontawesome-free/css/all.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
-	<link rel="stylesheet" href="assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
+	<link rel="stylesheet" href="../portal-assets/css/simple-sidebar.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -151,8 +151,8 @@ if (isset($_POST['addT'])) {
 		</div>
 		<!-- /#wrapper -->
 		<!-- Bootstrap core JavaScript -->
-		<script src="assets/jquery/jquery.min.js"></script>
-		<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+	  <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
 		<!-- Menu Toggle Script -->
 		<script>
 		$("#menu-toggle").click(function(e) {

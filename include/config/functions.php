@@ -160,11 +160,12 @@ function teacherLogin()
             $row = mysqli_fetch_array($execute);
             $_SESSION['teacherId'] = $row['id'];
             $_SESSION['teacherName'] = $row['name'];
-            $_SESSION['teacherEmail'] = $row['eamil'];
+            $_SESSION['teacherEmail'] = $row['email'];
             $_SESSION['teacherImage'] = $row['image'];
             $_SESSION['teacherDetails'] = $row['details'];
+            $_SESSION['teacherPhone'] = $row['phone'];
             $_SESSION['success'] = " Welcome Back!  {$_SESSION['teacherName']} ";
-            Redirect_to('signup2.php');
+            Redirect_to('teachers/index.php');
         } else {
             return false;
         }
