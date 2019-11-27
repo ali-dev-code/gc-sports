@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2019 at 12:07 PM
+-- Generation Time: Nov 27, 2019 at 12:58 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -81,6 +81,7 @@ CREATE TABLE `teachers` (
   `image` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `sport_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -88,13 +89,13 @@ CREATE TABLE `teachers` (
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`id`, `name`, `details`, `short_details`, `image`, `password`, `phone`, `sport_id`) VALUES
-(11, 'Mr. Nabeel Haider', 'COACH , Badminton', 'GC University', 'coach_bedminton.jpg', '123456', '03111111111', 10),
-(12, 'Mr. Afaaq', 'COACH , Hockey', 'GC University', 'coach_hockey.jpg', '123456', '03111111111', 11),
-(13, 'Mr. Umer ', 'COACH , Volley Ball', 'GC University', 'coach_volley_ball.jpg', '123456', '03111111111', 12),
-(14, 'Mr. Ali', 'COACH , Footbal', 'GC University', 'coach_foootball.jpg', '123456', '123456', 14),
-(17, 'Mr. Saqlain ALi', 'COACH , Cricket', 'GC University', 'coach_cricket.jpg', '123456', '03111111111', 15),
-(18, 'Mr. Abid Ali ', 'COACH , Basket Ball', 'GC University', 'coach_backet_ball.jpg', '123456', '123456', 13);
+INSERT INTO `teachers` (`id`, `name`, `details`, `short_details`, `image`, `password`, `phone`, `email`, `sport_id`) VALUES
+(11, 'Mr. Nabeel Haider', 'COACH , Badminton', 'GC University', 'coach_bedminton.jpg', '123456', '03111111111', 'example1@gmail.com', 10),
+(12, 'Mr. Afaaq', 'COACH , Hockey', 'GC University', 'coach_hockey.jpg', '123456', '03111111111', 'example2@gmail.com', 11),
+(13, 'Mr. Umer ', 'COACH , Volley Ball', 'GC University', 'coach_volley_ball.jpg', '123456', '03111111111', 'example3@gmail.com', 12),
+(14, 'Mr. Ali', 'COACH , Footbal', 'GC University', 'coach_foootball.jpg', '123456', '123456', 'example4@gmail.com', 14),
+(17, 'Mr. Saqlain ALi', 'COACH , Cricket', 'GC University', 'coach_cricket.jpg', '123456', '03111111111', 'example5@gmail.com', 15),
+(18, 'Mr. Abid Ali ', 'COACH , Basket Ball', 'GC University', 'coach_backet_ball.jpg', '123456', '123456', 'example6@gmail.com', 13);
 
 -- --------------------------------------------------------
 
@@ -108,6 +109,7 @@ CREATE TABLE `teacher_enroll` (
   `student_email` varchar(255) NOT NULL,
   `teacher` varchar(255) NOT NULL,
   `sport` varchar(255) NOT NULL,
+  `status` text DEFAULT NULL,
   `teacher_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `sport_id` int(11) NOT NULL
@@ -117,9 +119,13 @@ CREATE TABLE `teacher_enroll` (
 -- Dumping data for table `teacher_enroll`
 --
 
-INSERT INTO `teacher_enroll` (`id`, `student_name`, `student_email`, `teacher`, `sport`, `teacher_id`, `user_id`, `sport_id`) VALUES
-(15, 'ali hassan', 'alihassan@gmail.com', 'Mr. Nabeel Haider', 'Badminton', 11, 4, 10),
-(16, 'ali hassan', 'alihassan@gmail.com', 'Mr. Saqlain ALi', 'Cricket', 17, 4, 15);
+INSERT INTO `teacher_enroll` (`id`, `student_name`, `student_email`, `teacher`, `sport`, `status`, `teacher_id`, `user_id`, `sport_id`) VALUES
+(15, 'ali hassan', 'alihassan@gmail.com', 'Mr. Nabeel Haider', 'Badminton', 'it is my pleasure to inform you that our today practice timing is 4 pm', 11, 4, 10),
+(17, 'ali hassan', 'alihassan@gmail.com', 'Mr. Ali ', 'Football ', 'it is my pleasure to inform you that our matches will start form next Monday!', 14, 4, 14),
+(18, 'Hassan Raza', 'hassanraza@hotmail.com', 'Mr. Nabeel Haider ', 'Badminton ', 'it is my pleasure to inform you that our today practice timing is 4 pm', 11, 5, 10),
+(19, 'Hassan Raza', 'hassanraza@hotmail.com', 'Mr. Saqlain ALi ', 'Cricket ', NULL, 17, 5, 15),
+(20, 'Ali Asghar', 'aliasgr216@gmail.com', 'Mr. Ali', 'Football', 'it is my pleasure to inform you that our matches will start form next Monday!', 14, 6, 14),
+(21, 'Ali Asghar', 'aliasgr216@gmail.com', 'Mr. Abid Ali  ', 'Basketball ', NULL, 18, 6, 13);
 
 -- --------------------------------------------------------
 
@@ -168,7 +174,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `reg`, `status`, `password`) VALUES
-(4, 'ali hassan', 'alihassan@gmail.com', ' 4763927', 1, '123456');
+(4, 'ali hassan', 'alihassan@gmail.com', ' 4763927', 1, '123456'),
+(5, 'Hassan Raza', 'hassanraza@hotmail.com', '123456', 1, '123456'),
+(6, 'Ali Asghar', 'aliasgr216@gmail.com', ' 123456', 1, '123456');
 
 --
 -- Indexes for dumped tables
@@ -240,7 +248,7 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `teacher_enroll`
 --
 ALTER TABLE `teacher_enroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `upcoming_sports`
@@ -252,7 +260,7 @@ ALTER TABLE `upcoming_sports`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

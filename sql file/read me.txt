@@ -5,3 +5,43 @@
 5.then click on import
 6.and import that file which is in sql folder
   gc_sports.sql
+
+/***********  Admin  ***************/
+
+  for admin login
+  email = admin
+  password = admin
+
+/***********  Teachers coaches  ***************/
+
+  for teacher login
+
+  email = example1@gmail.com //teacher1
+  password = 123456
+
+  email = example2@gmail.com // teacher2
+  password = 123456
+
+  email = example3@gmail.com // teacher 3
+  password = 123456
+
+  email = example4@gmail.com // teacher 4
+  password = 123456
+
+  email = example5@gmail.com  // teacher 5
+  password = 123456
+
+  email = example6@gmail.com // teacher 6
+  password = 123456
+
+
+/***********  student login  ***************/
+
+email = example1@gmail.com //student1
+  password = 123456
+
+  email = example2@gmail.com // student2
+  password = 123456
+
+  email = example3@gmail.com // student3 3
+  password = 123456
