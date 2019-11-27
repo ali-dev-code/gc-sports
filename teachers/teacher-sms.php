@@ -1,5 +1,27 @@
 <?php require_once '../include/config/config.php'; ?>
-<?php confirmLogin(); ?>
+<?php confirmLoginTeacher(); ?>
+<?php
+
+ if (isset($_POST['submit'])) {
+
+   $sms = mysqli_real_escape_string($Connection, $_POST['message']);
+
+   if (empty($sms) || strlen($sms)<5 ) {
+    $_SESSION['error']  =  " Message field is required and lenght should be atleast 5 characters";
+   } else {
+     //$query = " SELECT * FROM teacher_enroll WHERE teacher_id = ". $_SESSION['teacherId'] ." ";
+     $query = " UPDATE teacher_enroll SET status = '$sms' WHERE teacher_id = ". $_SESSION['teacherId'] ." ";
+     $execute = mysqli_query($Connection, $query);
+     if ($execute) {
+      $_SESSION['success'] = " Message is sent successfully ";
+      Redirect_to("teacher-sms.php");
+     }
+
+   }
+
+ }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,18 +43,18 @@
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> User Panel
+      <div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> Teacher Panel
         <hr>
       </div>
       <div class="list-group list-group-flush">
         <a href="index.php" class="list-group-item list-group-item-action">
-          <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
+          <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teacher
         </a>
-        <a href="user-profile.php" class="list-group-item list-group-item-action active">
-          <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
+        <a href="teacher-students.php" class="list-group-item list-group-item-action  ">
+          <span class="mr-1"> <i class="fas fa-users"></i> </span> Students
         </a>
-        <a href="user-status.php" class="list-group-item list-group-item-action ">
-          <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
+        <a href="teacher-sms.php" class="list-group-item list-group-item-action active">
+          <span class="mr-1"> <i class="fa fa-envelope-open" aria-hidden="true"></i> </span> Notify
         </a>
       </div>
     </div>
@@ -53,10 +75,10 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <?php echo $_SESSION['userName']; ?>
+                <?php echo $_SESSION['teacherName']; ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="include/user-logout.php"> Logut </a>
+                <a class="dropdown-item" href="include/logout-teacher.php"> Logut </a>
               </div>
             </li>
           </ul>
@@ -64,26 +86,34 @@
       </nav>
       <div class="container-fluid">
         <div class="my-3">
-          <?php successMsg(); errorMsg();?>
+          <?php successMsg();
+                errorMsg(); ?>
         </div>
-        <div class="col-md-6 m-auto py-4">
-          <div class="card" style="width: 300px;">
-            <div class="card-header bg-success ">
-              <h6>User Profile</h6>
-            </div>
-            <div class="card-body">
-              <div class="card">
-                <img class="card-img-top img-fluid" src="../portal-assets/img/default.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title"><?php echo $_SESSION['userName']  ?></h4>
-                  <p class="card-text"> <strong>Email: </strong> <?php echo $_SESSION['userEmail']; ?> </p>
-                  <a href="edit-user-profile.php" class="btn btn-primary">Edit</a>
-                </div>
-              </div>
 
+
+        <div class="col-sm-10 mx-auto my-4">
+          <div class="card">
+            <div class="card-header bg-success  ">
+              <h6>Send SMS</h6>
+            </div>
+
+            <div class="card-body">
+              <h6 class="card-title text-dark"> Notify Students </h6>
+              <form action="" method="post">
+                <div class="form-group">
+                  <label for="message"></label>
+                 <textarea class="form-control" placeholder="Message" name="message" id="message" cols="3" rows="3"></textarea>
+                  <small id="helpId" class="text-muted">Only yours enrolled students will see your message</small>
+                </div>
+                <div class="form-group" >
+                  <button type="submit" name="submit" class="btn btn-primary">Send</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
+
+
       </div>
       <!-- /#page-content-wrapper -->
     </div>

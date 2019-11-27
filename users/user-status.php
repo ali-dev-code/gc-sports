@@ -28,10 +28,10 @@
         <a href="index.php" class="list-group-item list-group-item-action">
           <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
         </a>
-        <a href="user-profile.php" class="list-group-item list-group-item-action active">
+        <a href="user-profile.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
         </a>
-        <a href="user-status.php" class="list-group-item list-group-item-action ">
+        <a href="user-status.php" class="list-group-item list-group-item-action active">
           <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
         </a>
       </div>
@@ -66,20 +66,26 @@
         <div class="my-3">
           <?php successMsg(); errorMsg();?>
         </div>
-        <div class="col-md-6 m-auto py-4">
-          <div class="card" style="width: 300px;">
+        <div class="col-md-10 m-auto ">
+          <div class="card my-4 ">
             <div class="card-header bg-success ">
-              <h6>User Profile</h6>
+              <h6>User Status</h6>
             </div>
             <div class="card-body">
-              <div class="card">
-                <img class="card-img-top img-fluid" src="../portal-assets/img/default.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title"><?php echo $_SESSION['userName']  ?></h4>
-                  <p class="card-text"> <strong>Email: </strong> <?php echo $_SESSION['userEmail']; ?> </p>
-                  <a href="edit-user-profile.php" class="btn btn-primary">Edit</a>
-                </div>
-              </div>
+              <?php
+              $query = " SELECT * FROM teacher_enroll WHERE user_id = ". $_SESSION['userId'] ." ";
+              $execute = mysqli_query($Connection, $query);
+              while ($row = mysqli_fetch_array($execute)) {
+                  $sms = $row['status'];
+                  $teacher = $row['teacher']; ?>
+               <?php if ( $sms != null ): ?>
+              <blockquote class="blockquote">
+                <p class="mb-0 text-danger "> <?php echo $sms; ?> </p>
+                <footer class="blockquote-footer">By <cite title="Source Title"><?php echo $teacher; ?></cite></footer>
+              </blockquote>
+              <?php endif; ?>
+              <?php
+              } ?>
 
             </div>
           </div>

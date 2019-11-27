@@ -186,3 +186,12 @@ function confirmLoginTeacher()
         Redirect_to('../signup2.php');
     }
 }
+
+// if teacher is login and try to visit login page
+
+function loginTeacherRedirect()
+{
+    if (isset($_SESSION['teacherId'])) {
+        Redirect_to('teachers');
+    }
+}

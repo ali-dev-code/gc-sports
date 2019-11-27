@@ -27,11 +27,17 @@
 			<div class="sidebar-heading "> <i class="mr-2 fas fa-user"></i> User Panel
 				<hr>
 			</div>
-			<div class="list-group list-group-flush">
-				<a href="index.php" class="list-group-item list-group-item-action active">
-					<span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
-				</a>
-			</div>
+      <div class="list-group list-group-flush">
+        <a href="index.php" class="list-group-item list-group-item-action  active">
+          <span class="mr-1"> <i class="fas fa-chalkboard-teacher"></i> </span> Teachers
+        </a>
+        <a href="user-profile.php" class="list-group-item list-group-item-action ">
+          <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
+        </a>
+        <a href="user-status.php" class="list-group-item list-group-item-action ">
+          <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
+        </a>
+      </div>
 		</div>
 		<!-- /#sidebar-wrapper -->
 		<!-- Page Content -->

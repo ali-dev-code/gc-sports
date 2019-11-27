@@ -1,5 +1,6 @@
 <?php require_once 'include/config/config.php'; ?>
 <?php loginAdminRedirect(); ?>
+<?php loginTeacherRedirect(); ?>
 <?php
 if (isset($_POST['signupSubmit'])) {
     $name = mysqli_real_escape_string($Connection, $_POST['name']);
@@ -163,7 +164,7 @@ if (isset($_POST['signupSubmit'])) {
         <div id="register" class="container tab-pane active"><br>
           <h5 class="mb-2"> Student Registration </h5>
           <div class="form-setting clearfix">
-            <form action="include/users/user-register.php" method="POST">
+            <form action="" method="POST">
               <div class="form-group">
                 <label for="name" id="name"> <span class="input-color">Name*</span> </label>
                 <input type="text" name="name" id="name" class="form-control" value="">

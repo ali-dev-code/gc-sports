@@ -31,7 +31,7 @@
         <a href="user-profile.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
         </a>
-        <a href="#" class="list-group-item list-group-item-action ">
+        <a href="user-status.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
         </a>
       </div>
@@ -88,12 +88,14 @@
             <div class="card">
               <img class="card-img-top img-fluid" src="../admin/upload/teachers/<?php echo $row2['image']; ?>" alt="Card image">
               <div class="card-body">
-                <h6 class="card-title"><?php echo $row2['name']; ?>
+                <h6 class="card-title text-dark"><?php echo $row2['name']; ?>
                 </h6>
                 <p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $row2['details']; ?> </p>
-                <i class="fa fa-envelope text-success" aria-hidden="true"> <?php echo $row2['email']; ?> </i>
+                <i class="fa fa-envelope text-success mr-1 my-2" aria-hidden="true"> </i>
+                <span><?php echo $row2['email']; ?></span>
                 <br>
-                <i class="fa fa-phone mr-1 text-success " aria-hidden="true"> <?php echo $row2['phone']; ?> </i>
+                <i class="fa fa-phone mr-1 text-success my-2" aria-hidden="true">  </i>
+                <span><?php echo $row2['phone']; ?></span>
                 <br>
                 <a href="view-enroll-students.php?id=<?php echo $teacherId; ?>" class="btn btn-primary mt-3 btn-sm">View Enrolld
                   Studens</a>

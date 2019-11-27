@@ -59,7 +59,7 @@ if (isset($_POST['EditProfileSubmit'])) {
         <a href="user-profile.php" class="list-group-item list-group-item-action active">
           <span class="mr-1"> <i class="far fa-user-circle"></i> </span> Profile
         </a>
-        <a href="#" class="list-group-item list-group-item-action ">
+        <a href="user-status.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fas fa-thermometer-three-quarters"></i> </span> Status
         </a>
       </div>

@@ -32,8 +32,8 @@
         <a href="teacher-students.php" class="list-group-item list-group-item-action  active">
           <span class="mr-1"> <i class="fas fa-users"></i> </span> Students
         </a>
-        <a href="teacher-students.php" class="list-group-item list-group-item-action  ">
-          <span class="mr-1"> <i class="fa fa-envelope-open" aria-hidden="true"></i> </span> Send Email
+        <a href="teacher-sms.php" class="list-group-item list-group-item-action  ">
+          <span class="mr-1"> <i class="fa fa-envelope-open" aria-hidden="true"></i> </span> Notify
         </a>
       </div>
     </div>
