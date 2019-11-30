@@ -5,6 +5,7 @@ confirmLoginAdmin();
 <?php
 
 if (isset($_POST['submit'])) {
+    $idFromUrl = $_GET['edit'];
     //for image
     $image = $_FILES['image']['name'];
     $Target = 'upload/upcoming/' . basename($_FILES['image']['name']); // is me image upload ogi bhai jaan uski directory di hai
@@ -12,20 +13,26 @@ if (isset($_POST['submit'])) {
     $details = mysqli_real_escape_string($Connection, $_POST['details']);
     $date = mysqli_real_escape_string($Connection, $_POST['date']);
     $left = mysqli_real_escape_string($Connection, $_POST['left']);
-    if (empty($image) || empty($name) || empty($details) || empty($date) || empty($left)) {
+
+    // if admin update sport withou changing the pic
+    if (empty($image)) {
+        $sql = " SELECT * FROM upcoming_sports WHERE id = '$idFromUrl' ";
+        $execute = mysqli_query($Connection, $sql);
+        while ($row = mysqli_fetch_array($execute)) {
+            $image = $row['image'];
+        }
+    }
+
+    if (empty($name) || empty($details) || empty($date) || empty($left)) {
         $_SESSION['error'] = 'All fields are required';
         Redirect_to('upcoming-sports.php');
-    }
-    if (strlen($name) < 3) {
-        $_SESSION['error'] = 'your title is short';
-        Redirect_to('upcoming-sports.php');
     } else {
-        $Query = "INSERT INTO upcoming_sports (image,sport_name,details,date,days_left)
-         VALUES('$image', '$name', '$details','$date','$left')";
-        $Execute = mysqli_query($Connection, $Query);
+        $query = " UPDATE upcoming_sports SET image = '$image', sport_name = '$name', details = '$details' ,
+         date = '$date' , days_left = '$left' WHERE id='$idFromUrl'";
+        $execute = mysqli_query($Connection, $query);
         move_uploaded_file($_FILES['image']['tmp_name'], $Target);
-        if ($Execute) {
-            $_SESSION['success'] = 'sport has been added successfully';
+        if ($execute) {
+            $_SESSION['success'] = 'sport has been updated successfully';
             Redirect_to('upcoming-sports.php');
         } else {
             die('QUERY FAILED' . mysqli_error($Connection));
@@ -114,83 +121,57 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="card  my-4  ">
           <div class="card-header bg-success">
-            <h6>Add Upcoming Sport</h6>
+            <h6>Update Upcoming Sport</h6>
           </div>
           <div class="card-body">
-            <form action="" method="post" enctype="multipart/form-data">
+            <?php
+
+                $idFromUrl = $_GET['edit'];
+                $query = " SELECT * FROM upcoming_sports WHERE id = '$idFromUrl'  ";
+                $execute = mysqli_query($Connection, $query);
+                if (!$execute) {
+                    die('failed' . mysqli_error($Connection));
+                }
+                while ($row = mysqli_fetch_array($execute)) {
+                    $image = $row['image'];
+                    $name = $row['sport_name'];
+                    $details = $row['details'];
+                    $date = $row['date'];
+                    $left = $row['days_left'];
+                }
+                ?>
+
+            <form action="edit-upcoming-sport.php?edit=<?php echo $idFromUrl; ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
+                <span class="FieldInfo"> Existing Image</span>
+                <img class="ml-3" src="upload/upcoming/<?php echo $image; ?>" width="130px" ; height="60px;">
+                <br>
                 <label for="image"> Image </label>
                 <input type="file" name="image" id="image" class="form-control" value="">
               </div>
               <div class="form-group">
                 <label for="Name"> Sport name </label>
-                <input type="text" name="name" id="name" class="form-control" value="">
+                <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>">
               </div>
               <div class="form-group">
                 <label for="details"> Details </label>
-                <textarea class="form-control" name="details" id="details" cols="3" rows="3"></textarea>
+                <textarea class="form-control" name="details" id="details" cols="3" rows="3"><?php echo $details; ?></textarea>
               </div>
               <div class="form-group">
                 <label for="date"> Date </label>
-                <textarea class="form-control" name="date" id="date" cols="3" rows="3"></textarea>
+                <textarea class="form-control" name="date" id="date" cols="3" rows="3"><?php echo $date; ?></textarea>
               </div>
               <div class="form-group">
                 <label for="left"> Days left </label>
-                <textarea class="form-control" name="left" id="left" cols="1" rows="1"></textarea>
+                <textarea class="form-control" name="left" id="left" cols="1" rows="1"><?php echo $left; ?></textarea>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary" name="submit"> Submit </button>
+                <button type="submit" class="btn btn-primary" name="submit"> Update </button>
               </div>
             </form>
           </div>
         </div>
-        <div class="card  my-5  ">
-          <div class="card-header bg-success ">
-            <h6> Registered sports </h6>
-          </div>
-          <div class="care-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th> Tournament </th>
-                    <th>Image</th>
-                    <th>Date</th>
-                    <th>Days Left</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                      $query = ' SELECT * FROM upcoming_sports ';
-                      $execute = mysqli_query($Connection, $query);
-                      $srNo = 0;
-                      while ($row = mysqli_fetch_array($execute)) {
-                          $srNo++; ?>
-                  <tr>
-                    <td> <?php echo $srNo; ?> </td>
-                    <td> <?php echo $row['sport_name']; ?> </td>
-                    <td> <img src="upload/upcoming/<?php echo $row['image']; ?>" style="width:140px;" alt=""> </td>
-                    <td><?php echo $row['date']; ?></td>
-                    <td><?php echo $row['days_left']; ?></td>
-                    <td>
-                      <a href="edit-upcoming-sport.php?edit=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm mb-1">
-                        Edit
-                      </a>
-                      <a href="delete-upcoming-sport.php?delete=<?php echo $row['id']; ?>"
-                        onclick="return confirm('Are you sure to delete ?')" class="btn btn-danger btn-sm mb-1">
-                        Delete
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-                <?php
-                      } ?>
-              </table>
-            </div>
-          </div>
-        </div>
+
         <!-- /#page-content-wrapper -->
       </div>
     </div>

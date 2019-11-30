@@ -23,7 +23,7 @@ if (isset($_POST['EditProfileSubmit'])) {
         if ($Execute) {
             unset($_SESSION['userId'], $_SESSION['userName'], $_SESSION['userEmail']);
             $_SESSION['success'] = 'User Profile has been updated successfully please login again';
-            Redirect_to('../signup2.php');
+            Redirect_to('../signup.php');
         }
     }
 } // end of if isset

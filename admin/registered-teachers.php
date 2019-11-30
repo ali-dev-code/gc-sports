@@ -27,13 +27,13 @@ confirmLoginAdmin();
         <hr>
       </div>
       <div class="list-group list-group-flush">
-        <a href="index.php" class="list-group-item list-group-item-action  active">
+        <a href="index.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fas fa-tachometer-alt"></i> </span> Dashboard
         </a>
         <a href="add-teachers.php" class="list-group-item list-group-item-action">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Add Teachers
         </a>
-        <a href="registered-teachers.php" class="list-group-item list-group-item-action">
+        <a href="registered-teachers.php" class="list-group-item list-group-item-action active ">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Teachers
         </a>
         <a href="add-sports.php" class="list-group-item list-group-item-action  ">
@@ -81,19 +81,45 @@ confirmLoginAdmin();
           <?php successMsg();
           errorMsg(); ?>
         </div>
-        <h1 class="mt-4">Dashboard</h1>
+        <div class="row">
+          <?php
+         $query = " SELECT * FROM teachers ";
+         $execute = mysqli_query($Connection,$query);
+         while ($row = mysqli_fetch_array($execute)) {
+
+
+        ?>
+          <div class=" col-lg-4  col-md-6 col-sm-6">
+            <div class="card my-4 ">
+              <div class="card-header bg-success  ">
+                <h6>Teacher</h6>
+              </div>
+              <img class="card-img-top mx-auto mt-2 img-thumbnail " src="upload/teachers/<?php echo $row['image'];?>"
+                alt="Card image" style="width:50%;">
+              <div class="card-body">
+                <h6 class="card-title text-dark"><?php echo  $row['name']; ; ?> </h6>
+                <p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $row['details']; ?> </p>
+                <i class="fa fa-envelope text-success mr-1 my-2" aria-hidden="true"> </i>
+                <span><?php echo $row['email']; ?></span>
+                <br>
+                <i class="fa fa-phone mr-1 text-success my-2" aria-hidden="true"> </i>
+                <span><?php echo $row['phone']; ?></span>
+                <br>
+                <a class="btn btn-danger btn-sm mt-4" onclick="return confirm('Are you sure to delete?')"
+                  href="delete-teacher.php?id=<?php echo $row['id']; ?>" role="button">Delete</a>
+                <a class="btn btn-primary btn-sm float-right mt-4 "
+                  href="view-teacher-enroll-students.php?id=<?php echo $row['id']; ?>" role="button">Students</a>
+
+              </div>
+            </div>
+          </div>
+          <?php } ?>
+        </div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
   </div>
-
-  <!-- /#wrapper  <footer class="sticky-footer bg-white py-">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright © Your Website 2019</span>
-      </div>
-    </div>
-  </footer> -->
+  <!-- /#wrapper -->
   <!-- Bootstrap core JavaScript -->
   <script src="../assets/js/jquery-3.4.1.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>

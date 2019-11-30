@@ -61,7 +61,7 @@ function loginUser()
 
         if (mysqli_num_rows($execute) == 0) {
             $_SESSION['error'] = ' your credentials do not match our records.';
-            Redirect_to('signup2.php');
+            Redirect_to('signup.php');
         } else {
             $row = mysqli_fetch_assoc($execute);
             $_SESSION['userId'] = $row['id'];
@@ -88,7 +88,7 @@ function confirmLogin()
 {
     if (!login()) {
         $_SESSION['error'] = ' You must login first. ';
-        Redirect_to('signup2.php');
+        Redirect_to('signup.php');
     }
 }
 
@@ -131,7 +131,7 @@ function confirmLoginAdmin()
 {
     if (!loginAdmin()) {
         $_SESSION['error'] = ' You must login first. ';
-        Redirect_to('../signup2.php');
+        Redirect_to('../signup.php');
     }
 }
 
@@ -183,7 +183,7 @@ function confirmLoginTeacher()
 {
     if (!loginTeacher()) {
         $_SESSION['error'] = ' You must login first. ';
-        Redirect_to('../signup2.php');
+        Redirect_to('../signup.php');
     }
 }
 

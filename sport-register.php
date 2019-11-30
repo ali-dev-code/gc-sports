@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item " href="users/index.php">Portal</a>
-              <a class="dropdown-item " href="include/users/logout.php">Logout</a>
+              <a class="dropdown-item " href="users/include/user-logout.php">Logout</a>
             </div>
           </li>
           <?php endif; ?>
@@ -130,7 +130,7 @@ if (isset($_POST['submit'])) {
                 while ($rows = mysqli_fetch_array($execute)) {
                     ?>
         <div class="col-md-3">
-          <div class="card my-2" style="">
+          <div class="card crd my-2" style="">
             <img class="card-img-top img-fluid" src="admin/upload/teachers/<?php echo $rows['image']; ?>" alt="Card image" >
             <div class="card-body">
               <h5 class="card-title"><?php echo $rows['name']; ?> </h5>

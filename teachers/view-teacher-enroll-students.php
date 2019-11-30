@@ -57,7 +57,7 @@
 								<?php echo $_SESSION['teacherName']; ?>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="include/user-logout.php"> Logut </a>
+								<a class="dropdown-item" href="include/logout-teacher.php"> Logut </a>
 							</div>
 						</li>
 					</ul>
@@ -75,23 +75,26 @@
 									<tr>
 										<th>Sr No</th>
 										<th>Coach Name</th>
-										<th>Studen Name</th>
+                    <th>Student Name</th>
+                    <th>Student Email</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
                         $TeacherIDFromURL = $_GET['id'];
-                        $viewStudents = " SELECT student_name, teacher FROM teacher_enroll WHERE teacher_id = '$TeacherIDFromURL' ";
+                        $viewStudents = " SELECT student_name, teacher , student_email FROM teacher_enroll WHERE teacher_id = '$TeacherIDFromURL' ";
                         $executeViewStudents = mysqli_query($Connection, $viewStudents);
                         $srn = 0;
                         while ($datarows = mysqli_fetch_array($executeViewStudents)) {
-                            $studenName = $datarows['student_name'];
+                            $studentName = $datarows['student_name'];
                             $teacherName = $datarows['teacher'];
+                            $studentEmail = $datarows['student_email'];
                             $srn++; ?>
 									<tr>
 										<td> <?php echo $srn; ?> </td>
-										<td><?php echo $teacherName  ?></td>
-										<td> <?php echo $studenName ?> </td>
+										<td><?php echo $teacherName;  ?></td>
+                    <td> <?php echo $studentName; ?> </td>
+                    <td> <?php echo $studentEmail; ?> </td>
 									</tr>
 									<?php
                             } ?>

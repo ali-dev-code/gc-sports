@@ -68,28 +68,29 @@
                 errorMsg(); ?>
         </div>
 
-
-          <div class="col-sm-4 mx-auto my-4">
-            <div class="card">
-              <div class="card-header bg-success text-white ">
-                Teacher
-              </div>
-              <img class="card-img-top img-fluid" src="../admin/upload/teachers/<?php echo $_SESSION['teacherImage']; ?>" alt="Card image">
-              <div class="card-body">
-                <h6 class="card-title"><?php echo  $_SESSION['teacherName']; ; ?>  </h6>
-                <p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $_SESSION['teacherDetails']; ?> </p>
-                <i class="fa fa-envelope text-success mr-1 my-2" aria-hidden="true"> </i>
-                <span><?php echo $_SESSION['teacherEmail']; ?></span>
-                <br>
-                <i class="fa fa-phone mr-1 text-success my-2" aria-hidden="true">  </i>
-                <span><?php echo $_SESSION['teacherPhone']; ?></span>
-                <br>
-                <a   class="btn btn-primary btn-block mt-3" href="view-teacher-enroll-students.php?id=<?php echo $_SESSION['teacherId'] ?>">
+        <div class="col-sm-4 mx-auto my-4">
+          <div class="card">
+            <div class="card-header bg-success text-white ">
+              Teacher
+            </div>
+            <img class="card-img-top img-fluid" src="../admin/upload/teachers/<?php echo $_SESSION['teacherImage']; ?>"
+              alt="Card image">
+            <div class="card-body">
+              <h6 class="card-title text-dark "><?php echo  $_SESSION['teacherName']; ; ?> </h6>
+              <p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $_SESSION['teacherDetails']; ?> </p>
+              <i class="fa fa-envelope text-success mr-1 my-2" aria-hidden="true"> </i>
+              <span><?php echo $_SESSION['teacherEmail']; ?></span>
+              <br>
+              <i class="fa fa-phone mr-1 text-success my-2" aria-hidden="true"> </i>
+              <span><?php echo $_SESSION['teacherPhone']; ?></span>
+              <br>
+              <a class="btn btn-primary btn-block mt-3"
+                href="view-teacher-enroll-students.php?id=<?php echo $_SESSION['teacherId'] ?>">
                 View Enrolled Students
               </a>
-              </div>
             </div>
           </div>
+        </div>
 
 
       </div>

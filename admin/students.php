@@ -33,6 +33,9 @@ confirmLoginAdmin();
         <a href="add-teachers.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Add Teachers
         </a>
+        <a href="registered-teachers.php" class="list-group-item list-group-item-action  ">
+          <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Teachers
+        </a>
         <a href="add-sports.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Add Sport
         </a>

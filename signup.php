@@ -13,25 +13,25 @@ if (isset($_POST['signupSubmit'])) {
 
     if (empty($name) || empty($email) || empty($password) || empty($password2) || empty($reg)) {
         $_SESSION['error'] = ' All fields are required ';
-        Redirect_to('signup2.php');
+        Redirect_to('signup.php');
     } elseif (preg_match($nameWithoutNumbers, $name) || strlen($name) < 3) {
         $_SESSION['error'] = ' name fiel can not contain numbers, And name minum length is 3 characters  ';
-        Redirect_to('signup2.php');
+        Redirect_to('signup.php');
     } elseif (emailExist($email)) {
         $_SESSION['error'] = ' email is already registered ';
-        Redirect_to('signup2.php');
+        Redirect_to('signup.php');
     } elseif (strlen($password) < 6) {
         $_SESSION['error'] = ' Password minimum length is 6 characters  ';
-        Redirect_to('signup2.php');
+        Redirect_to('signup.php');
     } elseif ($password !== $password2) {
         $_SESSION['error'] = ' Password dont mtach  ';
-        Redirect_to('signup2.php');
+        Redirect_to('signup.php');
     } else {
         $query = " INSERT INTO users(name,email, reg, status ,password) VALUES('$name','$email', '$reg', 0 ,  '$password') ";
         $execute = mysqli_query($Connection, $query) ;
         if ($execute) {
             $_SESSION['success'] = ' You are successfully registered please login for enroll yourself with your desired coachh  ';
-            Redirect_to('signup2.php');
+            Redirect_to('signup.php');
         } else {
             die('QUERY FAILED' . mysqli_error($Connection));
         }
@@ -77,7 +77,7 @@ if (isset($_POST['signupSubmit'])) {
             <a class="nav-link px-3 " href="index.php">HOME</a>
           </li>
           <li class="nav-item mr-1">
-            <a class="nav-link px-3 active" href="signup2.php">STUDENT</a>
+            <a class="nav-link px-3 active" href="signup.php">STUDENT</a>
           </li>
           <li class="nav-item mr-1">
             <a class="nav-link px-3" data-toggle="modal" href="#modal-teacher">TEACHER</a>

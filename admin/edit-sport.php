@@ -2,15 +2,44 @@
 <?php
 confirmLoginAdmin();
 ?>
-
 <?php
-if (isset($_GET['id'])) {
-    $idFromUrl = $_GET['id'];
+
+if (isset($_POST['addS'])) {
+    $idFromUrl = $_GET['edit'];
+    $image = $_FILES['image']['name'];
+    $Target = 'upload/sports/' . basename($_FILES['image']['name']); // is me image upload ogi bhai jaan uski directory di hai
+    $name = mysqli_real_escape_string($Connection, $_POST['name']);
+    $details = mysqli_real_escape_string($Connection, $_POST['details']);
+    $checkAlreadySport = " SELECT * FROM sports WHERE name ='$name' AND id != '$idFromUrl' "; // see if sport alredy exist
+    $executeAlreadySport = mysqli_query($Connection, $checkAlreadySport);
+    // if admin update sport withou changing the pic
+    if (empty($image)) {
+        $sql = " SELECT * FROM sports WHERE id = '$idFromUrl' ";
+        $execute = mysqli_query($Connection, $sql);
+        while ($row = mysqli_fetch_array($execute)) {
+            $image = $row['image'];
+        }
+    }
+
+    if (empty($name) || empty($details)) {
+        $_SESSION['error'] = 'All fields are required';
+    } elseif (strlen($name) < 3) {
+        $_SESSION['error'] = 'your title is short';
+    } elseif (mysqli_num_rows($executeAlreadySport) == 1) {
+        $_SESSION['error'] = 'sport is already Registered';
+    } else {
+        $query = " UPDATE sports SET name = '$name', image = '$image', details = '$details' WHERE id='$idFromUrl'";
+        $execute = mysqli_query($Connection, $query);
+        move_uploaded_file($_FILES['image']['tmp_name'], $Target);
+        if ($execute) {
+            $_SESSION['success'] = 'Sport has been added successfully';
+            Redirect_to('add-sports.php');
+        } else {
+            die('QUERY FAILED' . mysqli_error($Connection));
+        }
+    }
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,19 +68,19 @@ if (isset($_GET['id'])) {
         <a href="index.php" class="list-group-item list-group-item-action  ">
           <span class="mr-1"> <i class="fas fa-tachometer-alt"></i> </span> Dashboard
         </a>
-        <a href="add-teachers.php" class="list-group-item list-group-item-action active">
+        <a href="add-teachers.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Add Teachers
         </a>
         <a href="registered-teachers.php" class="list-group-item list-group-item-action  ">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Teachers
         </a>
-        <a href="add-sports.php" class="list-group-item list-group-item-action  ">
+        <a href="add-sports.php" class="list-group-item list-group-item-action active ">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Add Sport
         </a>
-        <a href="upcoming-sport.php" class="list-group-item list-group-item-action ">
+        <a href="upcoming-sports.php" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fa fa-caret-down" aria-hidden="true"></i> </span> Upcoming Sports
         </a>
-        <a href="students.php" class="list-group-item list-group-item-action ">
+        <a href="index" class="list-group-item list-group-item-action ">
           <span class="mr-1"> <i class="fas fa-users"></i> </span> Students
         </a>
         <a href="admin-profile.php" class="list-group-item list-group-item-action ">
@@ -76,7 +105,7 @@ if (isset($_GET['id'])) {
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <?php  echo $_SESSION['adminName']  ?>
+                <?php echo $_SESSION['adminName']; ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="include/addminLogout.php">Logout</a>
@@ -88,61 +117,55 @@ if (isset($_GET['id'])) {
       <div class="container-fluid">
         <div class="my-3">
           <?php successMsg();
-          errorMsg(); ?>
+                    errorMsg(); ?>
         </div>
-        <div class="card my-4 ">
-          <div class="card-header bg-success ">
-            <div class="d-flex justify-content-between">
-              <div>
-                <h6>Students Enrolled</h6>
-              </div>
-              <div>
-                <a class="btn btn-danger btn-sm float-right " href="delete-all-teacher-students.php?id=<?php echo $idFromUrl; ?>"
-                  role="button" onclick="return confirm('Are you sure to delete all record?')"> Delete Record
-                </a>
-              </div>
-            </div>
+        <div class="card  my-4  ">
+          <div class="card-header bg-success">
+            <h6>Edit Sport</h6>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Sr No</th>
-                    <th>Teacher Name</th>
-                    <th>Studen Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                            $TeacherIDFromURL = $_GET['id'];
-                            $viewStudents = " SELECT student_name, teacher FROM teacher_enroll WHERE teacher_id = '$TeacherIDFromURL' ";
-                            $executeViewStudents = mysqli_query($Connection, $viewStudents);
-                            $srn = 0;
-                            while ($datarows = mysqli_fetch_array($executeViewStudents)) {
-                                $studenName = $datarows['student_name'];
-                                $teacherName = $datarows['teacher'];
-                                $srn++; ?>
-                  <tr>
-                    <td> <?php echo $srn; ?> </td>
-                    <td><?php echo $teacherName  ?></td>
-                    <td> <?php echo $studenName ?> </td>
-                  </tr>
-                  <?php
-                            } ?>
+            <?php
 
-                </tbody>
-              </table>
-            </div>
+                $idFromUrl = $_GET['edit'];
+                $query = " SELECT * FROM sports WHERE id = '$idFromUrl'  ";
+                $execute = mysqli_query($Connection, $query);
+                while ($row = mysqli_fetch_array($execute)) {
+                    $image = $row['image'];
+                    $name = $row['name'];
+                    $details = $row['details'];
+                } ?>
+
+            <form action="edit-sport.php?edit=<?php echo $idFromUrl; ?>" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <span class="FieldInfo"> Existing Image</span>
+                <img class="ml-3" src="upload/sports/<?php echo $image?>" width="130px" ; height="60px;">
+                <br>
+                <label for="image"> Image </label>
+                <input type="file" name="image" id="image" class="form-control" value="">
+              </div>
+              <div class="form-group">
+                <label for="Name"> Name </label>
+                <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>">
+              </div>
+              <div class="form-group">
+                <label for="details"> Details </label>
+                <textarea class="form-control" name="details" id="details" cols="3" rows="3"><?php echo $details; ?></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" name="addS"> Update </button>
+              </div>
+            </form>
           </div>
         </div>
+
+        <!-- /#page-content-wrapper -->
       </div>
-      <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->
     <script src="../assets/js/jquery-3.4.1.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/img-select-name.js"></script>
     <!-- Menu Toggle Script -->
     <script>
     $("#menu-toggle").click(function(e) {

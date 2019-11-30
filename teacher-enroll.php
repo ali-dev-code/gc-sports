@@ -87,7 +87,7 @@ if (isset($_POST['TeacherEnrollSubmit'])) {
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item " href="users/index.php">Portal</a>
-              <a class="dropdown-item " href="include/users/logout.php">Logout</a>
+              <a class="dropdown-item " href="users/include/user-logout.php">Logout</a>
             </div>
           </li>
           <?php endif; ?>
@@ -109,7 +109,7 @@ if (isset($_POST['TeacherEnrollSubmit'])) {
           $executeViewTeacher = mysqli_query($Connection, $viewTeacher);
           $diplayTeacher = mysqli_fetch_array($executeViewTeacher);
           ?>
-          <div class="card up my-2" style="width:300px;">
+          <div class="card up my-2 crd" style="width:300px;">
             <img class="card-img-top img-fluid" src="admin/upload/teachers/<?php echo $diplayTeacher['image']; ?>"
               alt="Card image">
             <div class="card-body">

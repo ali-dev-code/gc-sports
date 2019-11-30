@@ -1,51 +1,62 @@
+@font-face {
+	src: url(fonts/Muli-VariableFont_wght.ttf);
+	font-family: muli;
+}
+html,
 body {
-    position: relative;
+	font-family: muli;
+	position: relative;
+}
 
+.form-control:focus {
+	border-color: #ff80ff;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset,
+		0px 0px 8px rgba(255, 100, 255, 0.5);
 }
 
 /*       custom style for navigation bar */
 
 .navbar.bg-dark {
-    background-color: #05901f !important;
-    padding: 0px;
+	background-color: #05901f !important;
+	padding: 0px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(236, 237, 237, 0.8);
-    display: block;
-    padding: 0.9rem 0.2rem;
-    font-size: 14px;
+	color: rgba(236, 237, 237, 0.8);
+	display: block;
+	padding: 0.9rem 0.2rem;
+	font-size: 14px;
 }
 
 .navbar-dark .navbar-nav .nav-link.active {
-    background-color: green;
-    color: white !important;
+	background-color: green;
+	color: white !important;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-    background-color: green;
-    color: white !important;
+	background-color: green;
+	color: white !important;
 }
 
 /* Make the image fully responsive */
 .carousel-inner img {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 .carousel {
-    margin-top: 50px;
+	margin-top: 50px;
 }
 .carousel-caption {
-    bottom: 70px;
-    left: 15%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    /*  background: rgba(17, 196, 45, 0.63); */
+	bottom: 70px;
+	left: 15%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	/*  background: rgba(17, 196, 45, 0.63); */
 }
 
 .carousel-indicators li {
-    margin-bottom: 10px;
-    height: 20px;
+	margin-bottom: 10px;
+	height: 20px;
 }
 
 /*
@@ -54,160 +65,167 @@ style for upcoming TOURNAMENT
 */
 
 .setting {
-    padding: 70px 0px;
+	padding: 70px 0px;
 }
 
 #UPCOMING {
-    background-color: #f9f9f9;
+	background-color: #f9f9f9;
 }
 
 .heading h1 span {
-    position: relative;
+	position: relative;
+	font-weight: bold;
 }
 .heading h1 span:after {
-    position: absolute;
-    content: '';
-    width: 15%;
-    height: 2px;
-    border-bottom: 4px solid #05901f;
-    border-radius: 2px;
-    bottom: -2px;
-    left: 50%;
-    margin-left: -9.5%;
+	position: absolute;
+	content: '';
+	width: 15%;
+	height: 2px;
+	border-bottom: 4px solid #05901f;
+	border-radius: 2px;
+	bottom: -2px;
+	left: 50%;
+	margin-left: -9.5%;
 }
 
 .heading {
-    padding-bottom: 45px;
+	padding-bottom: 45px;
 }
 
 .up {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.06);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.06);
 }
 
 .card {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
+}
+
+.crd {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /** COACH  */
 #COACH {
-    background-color: #f9f9f9;
+	background-color: #f9f9f9;
 }
 .coach {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
-    margin-bottom: 30px;
-    text-align: center;
+	margin-bottom: 30px;
+	text-align: center;
 }
 .title {
-    color: grey;
-    font-size: 18px;
+	color: grey;
+	font-size: 18px;
 }
 .coach a {
-    text-decoration: none;
-    font-size: 22px;
-    color: black;
+	text-decoration: none;
+	font-size: 22px;
+	color: black;
 }
 a.enrollB {
-    border: none;
+	border: none;
 
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: #05901f;
-    text-align: center;
-    width: 100%;
-    font-size: 18px;
-    border-radius: 0px;
+	display: inline-block;
+	padding: 8px;
+	color: white;
+	background-color: #05901f;
+	text-align: center;
+	width: 100%;
+	font-size: 18px;
+	border-radius: 0px;
 }
 a.enrollB:hover {
-
-
-
-  color: white;
-  background-color: #1d722b;
-
+	color: white;
+	background-color: #1d722b;
 }
 
 /** Gallery  */
 
 .gallery a {
-    text-decoration: none;
-    padding: 5px;
-    float: left;
-    width: 25%;
+	text-decoration: none;
+	padding: 5px;
+	float: left;
+	width: 25%;
 }
 .gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
 }
 
 /* CEO */
 
 .ceoB {
-    background-color: #8dba23;
-    width: 100%;
+	background-color: #8dba23;
+	width: 100%;
+}
+
+.ceo-heading a:hover {
+	-webkit-filter: brightness(20%);
+	filter: brightness(70%);
 }
 
 /* Team contact button */
 
 .team-help-button .button-team {
-    background-color: #05901f;
-    color: white;
-    border-radius: 20px;
-    padding: 8px 14px;
-    font-size: 14px;
-    margin-top: 20px;
+	background-color: #05901f;
+	color: white;
+	border-radius: 20px;
+	padding: 8px 14px;
+	font-size: 14px;
+	margin-top: 20px;
 }
 
 .team-img {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 #TEAM {
-    background-color: #f9f9f9;
+	background-color: #f9f9f9;
+}
+.img-icons a:hover {
+	-webkit-filter: brightness(20%);
+	filter: brightness(70%);
 }
 /**** footer  ***/
 
 #FOOTER {
-    background-color: #8dba23;
+	background-color: #8dba23;
 }
 .footer-setting {
-    padding: 40px 0px;
-    color: #e5e6e9;
+	padding: 40px 0px;
+  color: rgba(236, 237, 237, 0.8);
 }
 .left-side button {
-    border-radius: 20%;
-    background-color: #05901f;
+	border-radius: 20%;
+	background-color: #05901f;
+}
+
+.left-side button:hover {
+	background-color: #0b681c;
 }
 
 .form-setting {
-    background-color: white;
-    padding: 10px 19px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+	background-color: white;
+	padding: 10px 19px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
 }
 
 .form-setting .input-color {
-    color: #e7aa23;
-    font-size: 15px;
+	color: #e7aa23;
+	font-size: 15px;
 }
-
-
 
 /*   media quries    */
 
-
 @media only screen and (max-width: 600px) {
-
- h1{
-   font-size: 26px;;
- }
- .setting {
-  padding: 20px 0px;
-}
-.btn{
-
-}
+	h1 {
+		font-size: 26px;
+	}
+	.setting {
+		padding: 20px 0px;
+	}
 }

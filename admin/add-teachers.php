@@ -18,13 +18,13 @@ if (isset($_POST['addT'])) {
     if (empty($image) || empty($name) || empty($details) || empty($short) || empty($sport) || empty($email)
      || empty($phone)) {
         $_SESSION['error'] = 'All fields are required';
-        Redirect_to('teachers.php');
+        Redirect_to('add-teachers.php');
     } elseif (strlen($name) < 3) {
         $_SESSION['error'] = 'name is short';
         Redirect_to('add-teachers.php');
     } else {
         $Query = "INSERT INTO teachers (name, details,short_details,image,password,phone,email,sport_id)
-         VALUES('$name','$details','$short','$image','$password','$phone','$email',$sport')";
+         VALUES('$name','$details','$short','$image','$password','$phone','$email','$sport') ";
         $Execute = mysqli_query($Connection, $Query);
         move_uploaded_file($_FILES['image']['tmp_name'], $Target);
         if ($Execute) {
@@ -66,6 +66,9 @@ if (isset($_POST['addT'])) {
         </a>
         <a href="add-teachers.php" class="list-group-item list-group-item-action active">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Add Teachers
+        </a>
+        <a href="registered-teachers.php" class="list-group-item list-group-item-action  ">
+          <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Teachers
         </a>
         <a href="add-sports.php" class="list-group-item list-group-item-action  ">
           <span class="mr-1"> <i class="fa fa-plus-circle"></i> </span> Add Sport
@@ -195,9 +198,7 @@ if (isset($_POST['addT'])) {
                     <td scope="row"> <?php  echo $srNo; ?> </td>
                     <td> <?php  echo $row['name']; ?> </td>
                     <td> <?php  echo $row['details'] ?> </td>
-                    <td>
-                      <a i class="btn btn-danger btn-sm mb-1" href="delete-teacher.php?id=<?php echo $row['id']; ?>"> Delete </a>
-                    </td>
+
                     <td>
                       <a class="btn btn-primary mb-1 btn-sm" href="view-teacher-enroll-students.php?id=<?php echo $row['id']; ?>">
                         View EnrolledStudent </a>

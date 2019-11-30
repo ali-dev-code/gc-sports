@@ -51,7 +51,7 @@
             <?php if (!login() && !loginAdmin() && !loginTeacher()): ?>
 
             <li class="nav-item mr-2">
-              <a class="nav-link" href="signup2.php" data-toggle="tooltip" data-placement="top" title="Sign in">
+              <a class="nav-link" href="signup.php" data-toggle="tooltip" data-placement="top" title="Sign in">
                 <i class="fas fa-sign-in-alt px-2"></i>
               </a>
             </li>
@@ -75,7 +75,7 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item " href="users/index.php">Portal</a>
-                <a class="dropdown-item " href="include/users/logout.php">Logout</a>
+                <a class="dropdown-item " href="users/include/user-logout.php">Logout</a>
               </div>
             </li>
             <?php endif; ?>
@@ -214,9 +214,8 @@
             $sportName = $row['name']; ?>
         <div class="col-md-6">
           <div class="card custom-card crd-img ">
-            <img class="card-img-top img-fluid" src="admin/upload/sports/<?php echo $sportImage; ?>"
-            style=" -webkit-filter: brightness(20%);
-                filter:brightness(50%);" >
+            <img class="card-img-top img-fluid" src="admin/upload/sports/<?php echo $sportImage; ?>" style=" -webkit-filter: brightness(20%);
+                filter:brightness(50%);">
             <div class="card-img-overlay">
               <h4 class="card-title"><?php echo $sportName; ?>
               </h4>
@@ -320,8 +319,8 @@
             <h6>__ CONTACT US</h6>
           </div>
           <div class="ceo-heading">
-            <h1 class=""> ZUBAIR SHAUKAT </h1>
-            <span> <strong>HEAD OF SPORTS MANAGEMENT</strong> </span>
+            <h1 class=""> Raiha Tallat </h1>
+            <h6> HEAD OF SPORTS MANAGEMENT </h6>
             <p class="p-2">
               <a href="#" style="font-size:26px; color:#D44136 ;"><i class="fas fa-envelope mr-2"></i></a>
               <a href="#" style="font-size:26px; color:#55ACEE "><i class="fab fa-twitter  mr-2 "></i></a>
@@ -334,7 +333,7 @@
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                   exercitation ullamco laboris
                   nisi ut aliquip ex ea commodo consequat."</p>
-                <footer class="blockquote-footer"> ZUBAIR SHAUKAT <cite title="Source Title"></cite></footer>
+                <footer class="blockquote-footer"> Raiha Tallat <cite title="Source Title"></cite></footer>
               </blockquote>
             </div>
           </div>
@@ -347,7 +346,7 @@
         </div> <!-- end of col -->
         <div class="col-sm-6">
           <div class="ceo-img">
-            <img class="img-fluid" src="assets/img/contact/ceo.jpg" alt="">
+            <img class="img-fluid" src="assets/img/contact/contact-hero.jpg" alt="">
           </div>
         </div>
       </div>

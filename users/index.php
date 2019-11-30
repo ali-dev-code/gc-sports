@@ -68,7 +68,10 @@
                     errorMsg(); ?>
         </div>
         <h6 class="ml-3 text-dark">Enrolled Coach</h6>
-        <?php
+
+
+       <div class="row">
+       <?php
         $query = ' SELECT * FROM teacher_enroll WHERE user_id = ' . $_SESSION['userId'] . '  ';
         $result = mysqli_query($Connection, $query);
         while ($row = mysqli_fetch_array($result)) {
@@ -79,8 +82,8 @@
             $result2 = mysqli_query($Connection, $query2);
             while ($row2 = mysqli_fetch_array($result2)) {
                 ?>
-
-        <div class="card d-inline-block ml-3  my-5 " style="width: 250px ">
+         <div class="col-lg-4" >
+         <div class="card  my-5 ">
           <div class="card-header bg-success">
             <h6 class="text-white">Coach</h6>
           </div>
@@ -97,18 +100,21 @@
                 <i class="fa fa-phone mr-1 text-success my-2" aria-hidden="true">  </i>
                 <span><?php echo $row2['phone']; ?></span>
                 <br>
-                <a href="view-enroll-students.php?id=<?php echo $teacherId; ?>" class="btn btn-primary mt-3 btn-sm">View Enrolld
+                <a href="view-enroll-students.php?id=<?php echo $teacherId; ?>" class="btn btn-primary mt-3 btn-sm mr-2">View Enrolld
                   Studens</a>
                 <a href="disenroll-teacher.php?id=<?php echo $userTeacherEnrollId; ?>"
-                  class="btn btn-danger mt-3 btn-sm">Dis-Enroll</a>
+                  class="btn btn-danger mt-3 btn-sm  ">Dis-Enroll</a>
               </div>
             </div>
           </div>
         </div>
+         </div>
+
         <?php
             } ?>
         <?php
         } ?>
+         </div>
 
       </div>
       <!-- /#page-content-wrapper -->
