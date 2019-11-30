@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 12:58 PM
+-- Generation Time: Nov 30, 2019 at 09:06 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -60,12 +60,12 @@ CREATE TABLE `sports` (
 --
 
 INSERT INTO `sports` (`id`, `name`, `image`, `details`) VALUES
-(10, 'Badminton', 'sport_bedminton.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nemo assumenda, placeat porro alias quos vitae odit et sapiente! Ut eveniet repellendus impedit blanditiis sequi, sint exercitationem laboriosam quas velit'),
 (11, 'Hockey', 'sport_hockey.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nemo assumenda, placeat porro alias quos vitae odit et sapiente! Ut eveniet repellendus impedit blanditiis sequi, sint exercitationem laboriosam quas velit'),
-(12, 'Volleyball', 'sport_volleyball.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nemo assumenda, placeat porro alias quos vitae odit et sapiente! Ut eveniet repellendus impedit blanditiis sequi, sint exercitationem laboriosam quas velit'),
 (13, 'Basketball', 'sport_basketball.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nemo assumenda, placeat porro alias quos vitae odit et sapiente! Ut eveniet repellendus impedit blanditiis sequi, sint exercitationem laboriosam quas velit'),
 (14, 'Football', 'sport_football.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nemo assumenda, placeat porro alias quos vitae odit et sapiente! Ut eveniet repellendus impedit blanditiis sequi, sint exercitationem laboriosam quas velit'),
-(15, 'Cricket', 'sport_cricket.jpg', 'heloo');
+(15, 'Cricket', 'sport_cricket.jpg', 'heloo'),
+(17, 'Badminton', 'sport_bedminton.jpg', 'lorem ipsum'),
+(18, 'Volleyball', 'sport_volleyball.jpg', 'hhh');
 
 -- --------------------------------------------------------
 
@@ -90,12 +90,12 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `details`, `short_details`, `image`, `password`, `phone`, `email`, `sport_id`) VALUES
-(11, 'Mr. Nabeel Haider', 'COACH , Badminton', 'GC University', 'coach_bedminton.jpg', '123456', '03111111111', 'example1@gmail.com', 10),
-(12, 'Mr. Afaaq', 'COACH , Hockey', 'GC University', 'coach_hockey.jpg', '123456', '03111111111', 'example2@gmail.com', 11),
-(13, 'Mr. Umer ', 'COACH , Volley Ball', 'GC University', 'coach_volley_ball.jpg', '123456', '03111111111', 'example3@gmail.com', 12),
-(14, 'Mr. Ali', 'COACH , Footbal', 'GC University', 'coach_foootball.jpg', '123456', '123456', 'example4@gmail.com', 14),
-(17, 'Mr. Saqlain ALi', 'COACH , Cricket', 'GC University', 'coach_cricket.jpg', '123456', '03111111111', 'example5@gmail.com', 15),
-(18, 'Mr. Abid Ali ', 'COACH , Basket Ball', 'GC University', 'coach_backet_ball.jpg', '123456', '123456', 'example6@gmail.com', 13);
+(18, 'Mr. Abid Ali ', 'COACH , Basket Ball', 'GC University', 'coach_backet_ball.jpg', '123456', '123456', 'example2@gmail.com', 13),
+(21, 'Mr. Ali', 'COACH , Footbal', 'GC University', 'coach_foootball.jpg', '123456', '03111111111', 'example4@gmail.com', 14),
+(22, 'Mr. Ahsan', 'COACH , Hockey', 'GC University', 'coach_hockey.jpg', '123456', '03111111111', 'example5@gmail.com', 11),
+(23, 'Mr. Zubair', 'COACH , Volley Ball', 'GC University', 'coach_volley_ball.jpg', '123456', '03111111111', 'example6@gmail.com', 18),
+(24, 'Mr. Hassan Raza', 'COACH , Cricket', 'GC University', 'coach_cricket.jpg', '123456', '03111111111', 'example1@gmail.com', 15),
+(25, 'Mr. Aqeel Raza', 'COACH , Badminton', 'GC University', 'coach_bedminton.jpg', '123456', '03111111111', 'example3@gmail.com', 17);
 
 -- --------------------------------------------------------
 
@@ -120,12 +120,10 @@ CREATE TABLE `teacher_enroll` (
 --
 
 INSERT INTO `teacher_enroll` (`id`, `student_name`, `student_email`, `teacher`, `sport`, `status`, `teacher_id`, `user_id`, `sport_id`) VALUES
-(15, 'ali hassan', 'alihassan@gmail.com', 'Mr. Nabeel Haider', 'Badminton', 'it is my pleasure to inform you that our today practice timing is 4 pm', 11, 4, 10),
-(17, 'ali hassan', 'alihassan@gmail.com', 'Mr. Ali ', 'Football ', 'it is my pleasure to inform you that our matches will start form next Monday!', 14, 4, 14),
-(18, 'Hassan Raza', 'hassanraza@hotmail.com', 'Mr. Nabeel Haider ', 'Badminton ', 'it is my pleasure to inform you that our today practice timing is 4 pm', 11, 5, 10),
-(19, 'Hassan Raza', 'hassanraza@hotmail.com', 'Mr. Saqlain ALi ', 'Cricket ', NULL, 17, 5, 15),
-(20, 'Ali Asghar', 'aliasgr216@gmail.com', 'Mr. Ali', 'Football', 'it is my pleasure to inform you that our matches will start form next Monday!', 14, 6, 14),
-(21, 'Ali Asghar', 'aliasgr216@gmail.com', 'Mr. Abid Ali  ', 'Basketball ', NULL, 18, 6, 13);
+(24, 'ali hassan', 'example1@gmail.com', 'Mr. Ali ', 'Football ', NULL, 21, 4, 14),
+(25, 'ali hassan', 'example1@gmail.com', 'Mr. Hassan Raza ', 'Cricket ', NULL, 24, 4, 15),
+(26, 'Hassan Raza', 'example2@gmail.com', 'Mr. Ali', 'Football', NULL, 21, 5, 14),
+(27, 'Hassan Raza', 'example2@gmail.com', 'Mr. Hassan Raza ', 'Cricket ', NULL, 24, 5, 15);
 
 -- --------------------------------------------------------
 
@@ -147,7 +145,7 @@ CREATE TABLE `upcoming_sports` (
 --
 
 INSERT INTO `upcoming_sports` (`id`, `image`, `sport_name`, `details`, `date`, `days_left`) VALUES
-(1, 'sport_cricket.jpg', 'Cricket', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'October 23', '10 days left'),
+(1, 'sport_cricket.jpg', 'Cricket', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'October 244', '10 days left'),
 (2, 'sport_football.jpg', 'Football', 'Lorem ipsum dolor sit amet, consectetur adipisicin..', 'October 23', '10 days left'),
 (3, 'sport_bedminton.jpg', 'Badminton', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'October 23', '10 days left'),
 (4, 'sport_basketball.jpg', 'Basketball', 'December 23', 'December 23', '4 days left'),
@@ -174,9 +172,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `reg`, `status`, `password`) VALUES
-(4, 'ali hassan', 'alihassan@gmail.com', ' 4763927', 1, '123456'),
-(5, 'Hassan Raza', 'hassanraza@hotmail.com', '123456', 1, '123456'),
-(6, 'Ali Asghar', 'aliasgr216@gmail.com', ' 123456', 1, '123456');
+(4, 'ali hassan', 'example1@gmail.com', ' 4763927', 1, '123456'),
+(5, 'Hassan Raza', 'example2@gmail.com', '123456', 1, '123456'),
+(6, 'Ali Asghar', 'example3@gmail.com', ' 123456', 1, '123456');
 
 --
 -- Indexes for dumped tables
@@ -236,19 +234,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `sports`
 --
 ALTER TABLE `sports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `teacher_enroll`
 --
 ALTER TABLE `teacher_enroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `upcoming_sports`
