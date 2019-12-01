@@ -176,7 +176,7 @@
                     $date = $row['date'];
                     $daysLeft = $row['days_left']; ?>
 
-        <div class="col-sm-4 m-auto">
+        <div class="col-sm-4 ">
           <div class="card pb-3 up">
             <img class="card-img-top img-fluid" src="admin/upload/upcoming/<?php echo $image; ?>" alt="Card image cap">
             <div class="card-block">
