@@ -3,9 +3,9 @@
 
 <?php
 
-unset($_SESSION['userId'], $_SESSION['userName'], $_SESSION['userEmail']);
+session_unset();
+session_destroy();
 
-$_SESSION['success'] = 'You are successfully logout!';
 Redirect_to('../../signup.php');
 
  ?>

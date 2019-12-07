@@ -75,7 +75,7 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item " href="users/index.php">Portal</a>
-                <a class="dropdown-item " href="users/include/user-logout.php">Logout</a>
+                <a class="dropdown-item" href="include/logout.php">Logout</a>
               </div>
             </li>
             <?php endif; ?>
@@ -88,7 +88,7 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item " href="admin/index.php">Admin Panel</a>
-                <a class="dropdown-item " href="admin/include/addminLogout.php">Logout</a>
+                <a class="dropdown-item" href="include/logout.php">Logout</a>
               </div>
             </li>
             <?php endif; ?>
@@ -101,7 +101,7 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item " href="admin/index.php">Teacher Panel</a>
-                <a class="dropdown-item " href="teachers/include/logout-teacher.php">Logout</a>
+                <a class="dropdown-item" href="include/logout.php">Logout</a>
               </div>
             </li>
             <?php endif; ?>
@@ -163,7 +163,7 @@
       <div class="heading">
         <h1 class="text-center"><span>UPCOMING TOURNAMENT</span></h1>
       </div>
-      <div class="row">
+      <div class="row s">
 
         <?php
 

@@ -70,7 +70,7 @@ confirmLoginAdmin();
                 <?php echo $_SESSION['adminName']; ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="include/addminLogout.php">Logout</a>
+              <a class="dropdown-item" href="../include/logout.php">Logout</a>
               </div>
             </li>
           </ul>
@@ -83,21 +83,20 @@ confirmLoginAdmin();
         </div>
         <div class="row">
           <?php
-         $query = " SELECT * FROM teachers ";
-         $execute = mysqli_query($Connection,$query);
+         $query = ' SELECT * FROM teachers ';
+         $execute = mysqli_query($Connection, $query);
          while ($row = mysqli_fetch_array($execute)) {
-
-
-        ?>
+             ?>
           <div class=" col-lg-4  col-md-6 col-sm-6">
             <div class="card my-4 ">
               <div class="card-header bg-success  ">
                 <h6>Teacher</h6>
               </div>
-              <img class="card-img-top mx-auto mt-2 img-thumbnail " src="upload/teachers/<?php echo $row['image'];?>"
+              <img class="card-img-top mx-auto mt-2 img-thumbnail " src="upload/teachers/<?php echo $row['image']; ?>"
                 alt="Card image" style="width:50%;">
               <div class="card-body">
-                <h6 class="card-title text-dark"><?php echo  $row['name']; ; ?> </h6>
+                <h6 class="card-title text-dark"><?php echo  $row['name'];
+             ; ?> </h6>
                 <p class="card-text"> <span class="font-weight-bold"> </span> <?php echo $row['details']; ?> </p>
                 <i class="fa fa-envelope text-success mr-1 my-2" aria-hidden="true"> </i>
                 <span><?php echo $row['email']; ?></span>
@@ -113,7 +112,8 @@ confirmLoginAdmin();
               </div>
             </div>
           </div>
-          <?php } ?>
+          <?php
+         } ?>
         </div>
       </div>
     </div>

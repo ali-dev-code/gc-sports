@@ -3,22 +3,19 @@
 <?php
 
  if (isset($_POST['submit'])) {
+     $sms = mysqli_real_escape_string($Connection, $_POST['message']);
 
-   $sms = mysqli_real_escape_string($Connection, $_POST['message']);
-
-   if (empty($sms) || strlen($sms)<5 ) {
-    $_SESSION['error']  =  " Message field is required and lenght should be atleast 5 characters";
-   } else {
-     //$query = " SELECT * FROM teacher_enroll WHERE teacher_id = ". $_SESSION['teacherId'] ." ";
-     $query = " UPDATE teacher_enroll SET status = '$sms' WHERE teacher_id = ". $_SESSION['teacherId'] ." ";
-     $execute = mysqli_query($Connection, $query);
-     if ($execute) {
-      $_SESSION['success'] = " Message is sent successfully ";
-      Redirect_to("teacher-sms.php");
+     if (empty($sms) || strlen($sms) < 5) {
+         $_SESSION['error'] = ' Message field is required and lenght should be atleast 5 characters';
+     } else {
+         //$query = " SELECT * FROM teacher_enroll WHERE teacher_id = ". $_SESSION['teacherId'] ." ";
+         $query = " UPDATE teacher_enroll SET status = '$sms' WHERE teacher_id = " . $_SESSION['teacherId'] . ' ';
+         $execute = mysqli_query($Connection, $query);
+         if ($execute) {
+             $_SESSION['success'] = ' Message is sent successfully ';
+             Redirect_to('teacher-sms.php');
+         }
      }
-
-   }
-
  }
 
 ?>
@@ -78,7 +75,7 @@
                 <?php echo $_SESSION['teacherName']; ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="include/logout-teacher.php"> Logut </a>
+              <a class="dropdown-item" href="../include/logout.php">Logout</a>
               </div>
             </li>
           </ul>

@@ -100,7 +100,7 @@ if (isset($_POST['signupSubmit'])) {
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item " href="users/index.php">Portal</a>
-              <a class="dropdown-item " href="users/logout.php">Logout</a>
+              <a class="dropdown-item " href="users/include/user-logout.php">Logout</a>
             </div>
           </li>
           <?php endif; ?>

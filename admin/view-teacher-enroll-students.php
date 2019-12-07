@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
                 <?php  echo $_SESSION['adminName']  ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="include/addminLogout.php">Logout</a>
+              <a class="dropdown-item" href="../include/logout.php">Logout</a>
               </div>
             </li>
           </ul>
